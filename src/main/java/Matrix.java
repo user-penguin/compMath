@@ -35,6 +35,11 @@ public class Matrix {
         print(this.matrix);
     }
 
+    public void print(double[] vector){
+        for (int i = 0; i < vector.length; i++)
+            System.out.println(vector[i]);
+    }
+
     public void print(double[][] matrix) {
         for (double[] row : matrix) {
             for (double i : row) {

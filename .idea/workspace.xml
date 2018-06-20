@@ -2,13 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="9b12606d-6006-42a3-bf46-6eb0885d34cd" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/MatrixMath.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/MatrixMathTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Lab_4.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Lab_4.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Math.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/Matrix.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Matrix.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/MatrixTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/MatrixTest.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Matrix.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Matrix.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/MatrixMath.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/MatrixMath.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/MatrixMathTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/MatrixMathTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/MatrixMathTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/MatrixMathTest.class" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -24,26 +22,26 @@
       <file leaf-file-name="pom.xml" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/pom.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="465">
-              <caret line="31" column="10" selection-start-line="31" selection-start-column="10" selection-end-line="31" selection-end-column="10" />
+            <state relative-caret-position="75">
+              <caret line="5" lean-forward="true" selection-start-line="5" selection-end-line="5" />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="MatrixMath.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="MatrixMath.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/MatrixMath.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="513">
-              <caret line="46" column="26" lean-forward="true" selection-start-line="46" selection-start-column="26" selection-end-line="46" selection-end-column="26" />
+            <state relative-caret-position="409">
+              <caret line="61" column="65" selection-start-line="61" selection-start-column="65" selection-end-line="61" selection-end-column="65" />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="MatrixMathTest.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="MatrixMathTest.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/test/java/MatrixMathTest.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="450">
-              <caret line="32" column="10" lean-forward="true" selection-start-line="32" selection-start-column="10" selection-end-line="32" selection-end-column="10" />
+            <state relative-caret-position="364">
+              <caret line="40" column="46" selection-start-line="40" selection-start-column="46" selection-end-line="40" selection-end-column="46" />
             </state>
           </provider>
         </entry>
@@ -51,11 +49,14 @@
       <file leaf-file-name="Matrix.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/Matrix.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="495">
-              <caret line="33" column="25" selection-start-line="33" selection-start-column="25" selection-end-line="33" selection-end-column="25" />
+            <state relative-caret-position="225">
+              <caret line="39" column="42" selection-start-line="39" selection-start-column="42" selection-end-line="39" selection-end-column="42" />
               <folding>
                 <element signature="imports" expanded="true" />
+                <element signature="e#976#977#0" expanded="true" />
                 <element signature="e#1010#1011#0" expanded="true" />
+                <element signature="e#1709#1710#0" expanded="true" />
+                <element signature="e#1738#1739#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -101,13 +102,13 @@
         <option value="$PROJECT_DIR$/src/main/java/io.java" />
         <option value="$PROJECT_DIR$/src/main/java/matrix.java" />
         <option value="$PROJECT_DIR$/src/test/java/MatrixTest.java" />
-        <option value="$PROJECT_DIR$/src/main/java/Matrix.java" />
         <option value="$PROJECT_DIR$/src/test/java/CompareTest.java" />
         <option value="$PROJECT_DIR$/src/main/java/Lab_4.java" />
         <option value="$PROJECT_DIR$/src/main/java/Math.java" />
         <option value="$PROJECT_DIR$/src/test/java/MathTest.java" />
-        <option value="$PROJECT_DIR$/src/main/java/MatrixMath.java" />
+        <option value="$PROJECT_DIR$/src/main/java/Matrix.java" />
         <option value="$PROJECT_DIR$/src/test/java/MatrixMathTest.java" />
+        <option value="$PROJECT_DIR$/src/main/java/MatrixMath.java" />
       </list>
     </option>
   </component>
@@ -120,11 +121,11 @@
   <component name="NodePackageJsonFileManager">
     <packageJsonPaths />
   </component>
-  <component name="ProjectFrameBounds" extendedState="4">
-    <option name="x" value="358" />
-    <option name="y" value="25" />
-    <option name="width" value="1562" />
-    <option name="height" value="1055" />
+  <component name="ProjectFrameBounds" extendedState="6">
+    <option name="x" value="581" />
+    <option name="y" value="27" />
+    <option name="width" value="1277" />
+    <option name="height" value="701" />
   </component>
   <component name="ProjectView">
     <navigator proportions="" version="1">
@@ -210,7 +211,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="JUnit.All in compMath">
+  <component name="RunManager" selected="JUnit.MatrixMathTest.searchPersonalVectorTest">
     <configuration default="true" type="Application" factoryName="Application">
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
     </configuration>
@@ -248,13 +249,13 @@
       </option>
       <patterns />
     </configuration>
-    <configuration name="MatrixMathTest.multipMatrix" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="MatrixMathTest.compareVectors2" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="compMath" />
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
       <option name="ALTERNATIVE_JRE_PATH" />
       <option name="PACKAGE_NAME" value="" />
       <option name="MAIN_CLASS_NAME" value="MatrixMathTest" />
-      <option name="METHOD_NAME" value="multipMatrix" />
+      <option name="METHOD_NAME" value="compareVectors2" />
       <option name="TEST_OBJECT" value="method" />
       <option name="VM_PARAMETERS" value="-ea" />
       <option name="PARAMETERS" />
@@ -265,13 +266,13 @@
       </option>
       <patterns />
     </configuration>
-    <configuration name="MatrixMathTest.normalizationTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="MatrixMathTest.scalarMultipVectorTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="compMath" />
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
       <option name="ALTERNATIVE_JRE_PATH" />
       <option name="PACKAGE_NAME" value="" />
       <option name="MAIN_CLASS_NAME" value="MatrixMathTest" />
-      <option name="METHOD_NAME" value="normalizationTest" />
+      <option name="METHOD_NAME" value="scalarMultipVectorTest" />
       <option name="TEST_OBJECT" value="method" />
       <option name="VM_PARAMETERS" value="-ea" />
       <option name="PARAMETERS" />
@@ -282,14 +283,14 @@
       </option>
       <patterns />
     </configuration>
-    <configuration name="MatrixTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="MatrixMathTest.searchPersonalVectorTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="compMath" />
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
       <option name="ALTERNATIVE_JRE_PATH" />
       <option name="PACKAGE_NAME" value="" />
-      <option name="MAIN_CLASS_NAME" value="MatrixTest" />
-      <option name="METHOD_NAME" />
-      <option name="TEST_OBJECT" value="class" />
+      <option name="MAIN_CLASS_NAME" value="MatrixMathTest" />
+      <option name="METHOD_NAME" value="searchPersonalVectorTest" />
+      <option name="TEST_OBJECT" value="method" />
       <option name="VM_PARAMETERS" value="-ea" />
       <option name="PARAMETERS" />
       <option name="WORKING_DIRECTORY" value="%MODULE_WORKING_DIR%" />
@@ -338,19 +339,19 @@
       <listeners />
     </configuration>
     <list>
-      <item itemvalue="JUnit.MatrixTest" />
-      <item itemvalue="JUnit.MatrixMathTest.multipMatrix" />
       <item itemvalue="JUnit.MatrixMathTest" />
-      <item itemvalue="JUnit.MatrixMathTest.normalizationTest" />
       <item itemvalue="JUnit.All in compMath" />
+      <item itemvalue="JUnit.MatrixMathTest.compareVectors2" />
+      <item itemvalue="JUnit.MatrixMathTest.searchPersonalVectorTest" />
+      <item itemvalue="JUnit.MatrixMathTest.scalarMultipVectorTest" />
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.All in compMath" />
-        <item itemvalue="JUnit.MatrixMathTest.normalizationTest" />
+        <item itemvalue="JUnit.MatrixMathTest.searchPersonalVectorTest" />
+        <item itemvalue="JUnit.MatrixMathTest.scalarMultipVectorTest" />
         <item itemvalue="JUnit.MatrixMathTest" />
-        <item itemvalue="JUnit.MatrixMathTest.multipMatrix" />
-        <item itemvalue="JUnit.MatrixTest" />
+        <item itemvalue="JUnit.All in compMath" />
+        <item itemvalue="JUnit.MatrixMathTest.compareVectors2" />
       </list>
     </recent_temporary>
   </component>
@@ -365,47 +366,48 @@
       <option name="presentableId" value="Default" />
       <updated>1529480077860</updated>
       <workItem from="1529480080515" duration="8694000" />
-      <workItem from="1529507994718" duration="7584000" />
+      <workItem from="1529507994718" duration="17947000" />
     </task>
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="MatrixTest_fillFromFile2 - 2018.06.20 at 16h 55m 40s.xml">
-      <configuration name="MatrixTest.fillFromFile2" configurationId="JUnit" />
+    <history-entry file="MatrixMathTest_searchPersonalVectorTest - 2018.06.21 at 03h 27m 00s.xml">
+      <configuration name="MatrixMathTest.searchPersonalVectorTest" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="MatrixTest - 2018.06.20 at 16h 55m 50s.xml">
-      <configuration name="MatrixTest" configurationId="JUnit" />
+    <history-entry file="MatrixMathTest_searchPersonalVectorTest - 2018.06.21 at 03h 28m 21s.xml">
+      <configuration name="MatrixMathTest.searchPersonalVectorTest" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="MatrixTest - 2018.06.20 at 16h 57m 35s.xml">
-      <configuration name="MatrixTest" configurationId="JUnit" />
+    <history-entry file="MatrixMathTest_searchPersonalVectorTest - 2018.06.21 at 03h 33m 18s.xml">
+      <configuration name="MatrixMathTest.searchPersonalVectorTest" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="MathTest_multipMatrix - 2018.06.20 at 23h 40m 26s.xml">
-      <configuration name="MathTest.multipMatrix" configurationId="JUnit" />
+    <history-entry file="MatrixMathTest_searchPersonalVectorTest - 2018.06.21 at 03h 37m 39s.xml">
+      <configuration name="MatrixMathTest.searchPersonalVectorTest" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="MathTest - 2018.06.21 at 00h 13m 50s.xml">
-      <configuration name="MathTest" configurationId="JUnit" />
+    <history-entry file="MatrixMathTest_searchPersonalVectorTest - 2018.06.21 at 03h 38m 02s.xml">
+      <configuration name="MatrixMathTest.searchPersonalVectorTest" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="MathTest_multipMatrix - 2018.06.21 at 00h 15m 29s.xml">
-      <configuration name="MathTest.multipMatrix" configurationId="JUnit" />
+    <history-entry file="MatrixMathTest_searchPersonalVectorTest - 2018.06.21 at 03h 42m 25s.xml">
+      <configuration name="MatrixMathTest.searchPersonalVectorTest" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="MathTest - 2018.06.21 at 00h 15m 39s.xml">
-      <configuration name="MathTest" configurationId="JUnit" />
+    <history-entry file="MatrixMathTest_searchPersonalVectorTest - 2018.06.21 at 03h 42m 44s.xml">
+      <configuration name="MatrixMathTest.searchPersonalVectorTest" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="MathTest - 2018.06.21 at 00h 28m 39s.xml">
-      <configuration name="MathTest" configurationId="JUnit" />
+    <history-entry file="MatrixMathTest_searchPersonalVectorTest - 2018.06.21 at 03h 43m 21s.xml">
+      <configuration name="MatrixMathTest.searchPersonalVectorTest" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="MatrixMathTest_normalizationTest - 2018.06.21 at 00h 37m 10s.xml">
-      <configuration name="MatrixMathTest.normalizationTest" configurationId="JUnit" />
+    <history-entry file="MatrixMathTest_searchPersonalVectorTest - 2018.06.21 at 03h 46m 34s.xml">
+      <configuration name="MatrixMathTest.searchPersonalVectorTest" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="All_in_compMath - 2018.06.21 at 00h 42m 14s.xml">
-      <configuration name="All in compMath" configurationId="JUnit" />
+    <history-entry file="MatrixMathTest_searchPersonalVectorTest - 2018.06.21 at 03h 46m 39s.xml">
+      <configuration name="MatrixMathTest.searchPersonalVectorTest" configurationId="JUnit" />
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="16278000" />
+    <option name="totallyTimeSpent" value="26641000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="358" y="25" width="1562" height="1055" extended-state="4" />
+    <frame x="59" y="25" width="1861" height="1055" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info anchor="right" id="Palette" order="3" />
       <window_info anchor="bottom" id="TODO" order="6" />
@@ -417,11 +419,11 @@
       <window_info anchor="right" id="Maven Projects" order="3" />
       <window_info anchor="bottom" id="Database Changes" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Version Control" order="7" />
-      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.25925925" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.24232805" />
       <window_info anchor="bottom" id="Terminal" order="7" />
       <window_info id="Capture Tool" order="2" />
       <window_info id="Designer" order="2" />
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.08834827" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.074153684" />
       <window_info anchor="right" id="Database" order="3" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
@@ -462,7 +464,10 @@
           <caret line="33" column="25" lean-forward="true" selection-start-line="33" selection-start-column="25" selection-end-line="33" selection-end-column="25" />
           <folding>
             <element signature="imports" expanded="true" />
+            <element signature="e#976#977#0" expanded="true" />
             <element signature="e#1010#1011#0" expanded="true" />
+            <element signature="e#1709#1710#0" expanded="true" />
+            <element signature="e#1738#1739#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -488,24 +493,13 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/Matrix.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="495">
-          <caret line="33" column="25" selection-start-line="33" selection-start-column="25" selection-end-line="33" selection-end-column="25" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#1010#1011#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/Math.java">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
     <entry file="file://$PROJECT_DIR$/pom.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="465">
-          <caret line="31" column="10" selection-start-line="31" selection-start-column="10" selection-end-line="31" selection-end-column="10" />
+        <state relative-caret-position="75">
+          <caret line="5" lean-forward="true" selection-start-line="5" selection-end-line="5" />
         </state>
       </provider>
     </entry>
@@ -519,17 +513,31 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/MatrixMath.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/Matrix.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="513">
-          <caret line="46" column="26" lean-forward="true" selection-start-line="46" selection-start-column="26" selection-end-line="46" selection-end-column="26" />
+        <state relative-caret-position="225">
+          <caret line="39" column="42" selection-start-line="39" selection-start-column="42" selection-end-line="39" selection-end-column="42" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#976#977#0" expanded="true" />
+            <element signature="e#1010#1011#0" expanded="true" />
+            <element signature="e#1709#1710#0" expanded="true" />
+            <element signature="e#1738#1739#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/test/java/MatrixMathTest.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="450">
-          <caret line="32" column="10" lean-forward="true" selection-start-line="32" selection-start-column="10" selection-end-line="32" selection-end-column="10" />
+        <state relative-caret-position="364">
+          <caret line="40" column="46" selection-start-line="40" selection-start-column="46" selection-end-line="40" selection-end-column="46" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/MatrixMath.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="409">
+          <caret line="61" column="65" selection-start-line="61" selection-start-column="65" selection-end-line="61" selection-end-column="65" />
         </state>
       </provider>
     </entry>

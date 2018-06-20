@@ -1,9 +1,12 @@
+import java.util.Random;
+
 public class MatrixMath {
 
     static double E = 0.001;
+    static double MAX_NUM_OF_ITER = 1_000;
 
     // перемножение матриц
-    public double[] multipMatrixVector(double[][] A, double[] firstVector){
+    static double[] multipMatrixVector(double[][] A, double[] firstVector){
         int width = A.length;
         double[] finalMatrix = new double[width];
         for(int i = 0; i < width; i++)
@@ -12,7 +15,7 @@ public class MatrixMath {
     }
 
     // строка на вектор
-    private double multipVector(double[] row, double[] vector){
+    private static double multipVector(double[] row, double[] vector){
         double result = 0;
         for(int i = 0; i < vector.length; i++)
             result += row[i] * vector[i];
@@ -20,7 +23,7 @@ public class MatrixMath {
     }
 
     // сравнение векторов
-    public boolean compareVectors(double[] vectorPrev, double[] vectorNext){
+    static boolean compareVectors(double[] vectorPrev, double[] vectorNext){
         for (int i = 0; i < vectorNext.length; i++)
             if (!equals(vectorPrev[i], vectorNext[i]))
                 return false;
@@ -35,7 +38,7 @@ public class MatrixMath {
             return false;
     }
 
-    public double[] normalization(double[] vector) {
+    static double[] normalization(double[] vector) {
         double max = Math.abs(vector[0]);
         for (double i : vector)
             if (max < Math.abs(i))
@@ -45,5 +48,50 @@ public class MatrixMath {
         for (int i = 0; i < vector.length; i++)
             normVector[i] = vector[i] / max;
         return normVector;
+    }
+
+    static double[] searchPersonalVector(double[][] matrix, Double personalNumber) {
+        double[] vectorFirst = normalization(getRandomVector(matrix.length));
+        double[] vectorSecond = new double[matrix.length];
+
+        for (int i = 0; i < MAX_NUM_OF_ITER; i++) {
+            vectorSecond = multipMatrixVector(matrix, vectorFirst);
+            vectorSecond = normalization(vectorSecond);
+
+            //todo сравнение не векторов а собственных чисел
+            personalNumber = scalarMultipVector(vectorFirst, vectorSecond) / scalarMultipVector(vectorFirst, vectorFirst);
+            System.out.println(personalNumber);
+
+            if (compareVectors(vectorFirst, vectorSecond) ||
+                    compareVectors(multipVectorNumber(vectorFirst, -1), vectorSecond))
+                break;
+
+            double[] changeble = vectorFirst;
+            vectorFirst = vectorSecond;
+            vectorSecond = changeble;
+        }
+        return vectorSecond;
+    }
+
+    private static double[] getRandomVector(int length) {
+        Random random = new Random();
+        double[] vector = new double[length];
+        for (int i = 0; i < length; i++)
+            vector[i] = 1;
+        return vector;
+    }
+
+    static double[] multipVectorNumber(double[] vector, double nunber) {
+        double[] vectorNew = new double[vector.length];
+        for (int i = 0; i < vector.length; i++)
+            vectorNew[i] = vector[i] * nunber;
+        return vectorNew;
+    }
+
+    static double scalarMultipVector(double[] vec1, double[] vec2) {
+        double scalar = 0;
+        for (int i = 0; i < vec1.length; i++)
+            scalar += vec1[i] * vec2[i];
+        return scalar;
     }
 }
