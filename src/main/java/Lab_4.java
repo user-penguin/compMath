@@ -9,6 +9,6 @@ public class Lab_4 {
         matrix.print();
     }
 
-    
+
 
 }
