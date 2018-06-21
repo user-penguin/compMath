@@ -1,4 +1,5 @@
 import java.util.Random;
+import java.util.concurrent.ThreadLocalRandom;
 
 public class MatrixMath {
 
@@ -32,7 +33,7 @@ public class MatrixMath {
 
     // сравнение чисел
     private static boolean equals(double num1, double num2) {
-        if (num1 - num2 < E)
+        if (Math.abs(num1 - num2) < E)
             return true;
         else
             return false;
@@ -50,26 +51,27 @@ public class MatrixMath {
         return normVector;
     }
 
-    static double[] searchPersonalVector(double[][] matrix, Double personalNumber) {
-        double[] vectorFirst = normalization(getRandomVector(matrix.length));
+    static double[] searchPersonalVector (double[][] matrix, Double personalNumber) {
+        double[] vectorFirst = getRandomVector(matrix.length);
         double[] vectorSecond = new double[matrix.length];
 
-        for (int i = 0; i < MAX_NUM_OF_ITER; i++) {
-            vectorSecond = multipMatrixVector(matrix, vectorFirst);
-            vectorSecond = normalization(vectorSecond);
+        double personalNumberSec = 1;
 
-            //todo сравнение не векторов а собственных чисел
+        for (int i = 0; i < MAX_NUM_OF_ITER; i++) {
+            personalNumberSec = personalNumber;
+
+            vectorSecond = multipMatrixVector(matrix, vectorFirst);
+
             personalNumber = scalarMultipVector(vectorFirst, vectorSecond) / scalarMultipVector(vectorFirst, vectorFirst);
             System.out.println(personalNumber);
 
-            if (compareVectors(vectorFirst, vectorSecond) ||
-                    compareVectors(multipVectorNumber(vectorFirst, -1), vectorSecond))
+            vectorSecond = normalization(vectorSecond);
+            if (i > 0 && equals(personalNumber, personalNumberSec))
                 break;
-
-            double[] changeble = vectorFirst;
+            
             vectorFirst = vectorSecond;
-            vectorSecond = changeble;
         }
+
         return vectorSecond;
     }
 
@@ -77,7 +79,7 @@ public class MatrixMath {
         Random random = new Random();
         double[] vector = new double[length];
         for (int i = 0; i < length; i++)
-            vector[i] = 1;
+            vector[i] = ThreadLocalRandom.current().nextDouble(1, 20);
         return vector;
     }
 

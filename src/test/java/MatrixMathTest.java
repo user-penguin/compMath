@@ -38,7 +38,7 @@ class MatrixMathTest {
     @Test
     void searchPersonalVectorTest() {
         double[][] matrix = new double[][]{{2, 2, -8}, {2, -7, 10}, {-8, 10, -4}};
-        double[] expected = new MatrixMath().searchPersonalVector(matrix, new Double(1));
+        double[] expected = new MatrixMath().searchPersonalVector(matrix, new Double(0));
         double[] actual = MatrixMath.normalization(new double[]{1, -2, 2});
         assertEquals(MatrixMath.compareVectors(expected, actual) ||
                 MatrixMath.compareVectors(MatrixMath.multipVectorNumber(expected, -1), actual), true);
