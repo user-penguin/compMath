@@ -17,15 +17,13 @@ class MatrixMathTest {
     @Test
     void compareVectors1() {
         boolean expected = MatrixMath.compareVectors(new double[]{1, 2, 3}, new double[]{1, 2, 3});
-        boolean actual = true;
-        assertEquals(expected, actual);
+        assertEquals(expected, true);
     }
 
     @Test
     void compareVectors2() {
         boolean expected = MatrixMath.compareVectors(new double[]{1 + Math.E * 2, 2, 3}, new double[]{1, 2, 3});
-        boolean actual = false;
-        assertEquals(expected, actual);
+        assertEquals(expected, false);
     }
 
     @Test
@@ -71,6 +69,16 @@ class MatrixMathTest {
 
         for(int i = 0; i < matrix.length; i++)
             assertArrayEquals(expected[i], actual[i]);
+    }
+
+    @Test
+    void multipMatrixMatrixTest() {
+        Matrix A = new Matrix(new double[][]{{2, 3}, {4, 5}, {6, 7}});
+        Matrix B = new Matrix(new double[][]{{1, 2, 3 }, {4, 2, 3}});
+        Matrix expected = new Matrix(MatrixMath.multipMatrixMatrix(A.getMatrix(), B.getMatrix()));
+        Matrix actual = new Matrix(new double[][]{{14, 10, 15}, {24, 18, 27}, {34, 26, 39}});
+        for (int i = 0; i < actual.getMatrix().length; i++)
+            assertArrayEquals(expected.getMatrix()[i], actual.getMatrix()[i]);
     }
 
 }
