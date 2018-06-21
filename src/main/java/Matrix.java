@@ -1,25 +1,29 @@
 import java.io.*;
 import java.util.ArrayList;
 
-import static java.lang.Math.sqrt;
-
 public class Matrix {
 
     protected double[][] matrix;
 
     public Matrix() {}
 
+    public Matrix(int width, int height) {
+        matrix = new double[height][width];
+    }
+
     public Matrix(double[][] matrix) {
         this.matrix = matrix;
     }
 
-    private void addOneRow(String read, ArrayList<double[]> matrix) {
-        String[] toSplit = read.split(" ");
-        int width = toSplit.length;
-        double oneString[] = new double[width];
-        for(int i = 0; i < width; i++)
-            oneString[i] = Double.parseDouble(toSplit[i]);
-        matrix.add(oneString);
+    public double[][] getMatrix() {
+        return matrix;
+    }
+
+    public double[][] toArray(ArrayList<double[]> matrixArr) {
+        double[][] matrix = new double[matrixArr.size()][matrixArr.get(0).length];
+        for(int i = 0; i < matrixArr.size(); i++)
+            System.arraycopy (matrixArr, 0, matrix, 0, matrix.length);
+        return matrix;
     }
 
     public void fillFromFile(String path) {
@@ -56,18 +60,60 @@ public class Matrix {
         }
     }
 
-    public double[][] toArray(ArrayList<double[]> matrixArr) {
-        double[][] matrix = new double[matrixArr.size()][matrixArr.get(0).length];
-        for(int i = 0; i < matrixArr.size(); i++)
-            System.arraycopy (matrixArr, 0, matrix, 0, matrix.length);
-        return matrix;
+    public void rotation() {
+        int size = matrix.length;
+
+        double sumRowMatrix[] = new double[size];
+        for(int i = 0; i < size; i++)
+            for(int j = 0; j < size; j++)
+                if(i != j)
+                    sumRowMatrix[i] += matrix[i][j] * matrix[i][j];
+
+        double[] lambda = new double[size];
+        int[] indexes = new int[2];
+        while (Math.abs(searchElement(sumRowMatrix, indexes)) < 0) {
+            // todo
+        }
+
+        for(int i = 0; i < size; i++)
+            lambda[i] = matrix[i][i];
     }
 
-    public double[][] getMatrix() {
-        return matrix;
+    private void addOneRow(String read, ArrayList<double[]> matrix) {
+        String[] toSplit = read.split(" ");
+        int width = toSplit.length;
+        double oneString[] = new double[width];
+        for(int i = 0; i < width; i++)
+            oneString[i] = Double.parseDouble(toSplit[i]);
+        matrix.add(oneString);
     }
 
-    public double calculateAlpha(int k, int l) {
+    private double searchElement(double[] sumRowMatrix, int[] indexes) {
+        double max = 0;
+        indexes[0] = 0;
+        for (int i = 0; i < matrix.length; i++)
+            if (max < sumRowMatrix[i]) {
+                max = sumRowMatrix[i];
+                indexes[0] = i;
+            }
+
+        max = 0;
+        indexes[1] = 0;
+        for (int i = 0; i < matrix.length; i++)
+            if (max < Math.abs(matrix[indexes[0]][i])) {
+                max = matrix[indexes[0]][i];
+                indexes[1] = i;
+            }
+
+        if (indexes[0] > indexes[1]) {
+            int change = indexes[0];
+            indexes[0] = indexes[1];
+            indexes[1] = change;
+        }
+        return max;
+    }
+
+    private double calculateAlpha(int k, int l) {
         if (matrix[k][k] == matrix[l][l])
             return Math.sqrt(0.5);
         else {
@@ -76,7 +122,7 @@ public class Matrix {
         }
     }
 
-    public double calculateBetta(int k, int l) {
+    private double calculateBetta(int k, int l) {
         if (matrix[k][k] == matrix[l][l])
             return Math.sqrt(0.5);
         else {
@@ -88,4 +134,5 @@ public class Matrix {
     private double calculateMu(int k, int l){
         return (2 * matrix[k][l]) / (matrix[k][k] - matrix[l][l]);
     }
+
 }
