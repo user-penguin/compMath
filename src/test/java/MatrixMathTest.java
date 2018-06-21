@@ -45,11 +45,21 @@ class MatrixMathTest {
 
     @Test
     void searchPersonalNumber() {
-
         double[][] matrix = new double[][]{{2, 2, -8}, {2, -7, 10}, {-8, 10, -4}};
         double[] firstApproximate = MatrixMath.getRandomVector(matrix.length);
         double expected = MatrixMath.searchPersonalNumber(matrix, MatrixMath.searchPersonalVector(matrix, firstApproximate));
         double actual = -18;
+        assertEquals(MatrixMath.equals(expected, actual), true);
+    }
+
+    @Test
+    void searchSecondPersonalNumber() {
+        double[][] matrix = new double[][]{{2, 2, -8}, {2, -7, 10}, {-8, 10, -4}};
+        double[] firstApproximate = MatrixMath.getRandomVector(matrix.length);
+        double[] persVecSec = MatrixMath.searchSecPersVector(matrix,
+                MatrixMath.searchPersonalVector(matrix, firstApproximate), firstApproximate);
+        double expected = MatrixMath.searchPersonalNumber(matrix, persVecSec);
+        double actual = 9;
         assertEquals(MatrixMath.equals(expected, actual), true);
     }
 
