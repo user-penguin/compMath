@@ -1,6 +1,8 @@
 import java.io.*;
 import java.util.ArrayList;
 
+import static java.lang.Math.sqrt;
+
 public class Matrix {
 
     private double[][] matrix;
@@ -63,5 +65,27 @@ public class Matrix {
 
     public double[][] getMatrix() {
         return matrix;
+    }
+
+    public double calculateAlpha(int k, int l) {
+        if (matrix[k][k] == matrix[l][l])
+            return Math.sqrt(0.5);
+        else {
+            double mu = calculateMu(k, l);
+            return Math.sqrt((1 + 1 / (Math.sqrt(1 + mu * mu))) / 2);
+        }
+    }
+
+    public double calculateBetta(int k, int l) {
+        if (matrix[k][k] == matrix[l][l])
+            return Math.sqrt(0.5);
+        else {
+            double mu = calculateMu(k, l);
+            return Math.signum(mu) * Math.sqrt((1 - 1 / (Math.sqrt(1 + mu * mu))) / 2);
+        }
+    }
+
+    private double calculateMu(int k, int l){
+        return (2 * matrix[k][l]) / (matrix[k][k] - matrix[l][l]);
     }
 }
