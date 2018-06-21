@@ -61,8 +61,8 @@ public class MatrixMath {
         return normVector;
     }
 
-    static double[] searchPersonalVector (double[][] matrix) {
-        double[] vectorFirst = getRandomVector(matrix.length);
+    static double[] searchPersonalVector (double[][] matrix, double[] firstApproximation) {
+        double[] vectorFirst = firstApproximation;
         double[] vectorSecond = new double[matrix.length];
 
         double personalNumberSec = 1;
@@ -86,7 +86,25 @@ public class MatrixMath {
         return personalNumber;
     }
 
-    private static double[] getRandomVector(int length) {
+//    static double searchSecPersNumber (double[][] matrix, double[] personalVector, double[] firstApproximation) {
+//
+//        double[][] transpMatrix = transposeMatrix(matrix);
+//        double[] persVectorOfTranspose = searchPersonalVector(transpMatrix, firstApproximation); //g1
+//
+//        double firstRatio = scalarMultipVector(firstApproximation, persVectorOfTranspose) /
+//                scalarMultipVector(personalVector, persVectorOfTranspose);
+//        firstApproxTransp = firstApproximation
+//    }
+
+    static double[] substract(double[] firstVector, double[] secondVector){
+        double[] result = new double[firstVector.length];
+        for(int i = 0; i < firstVector.length; i++)
+            result[i] = firstVector[i] - secondVector[i];
+
+        return result;
+    }
+
+    public static double[] getRandomVector(int length) {
         Random random = new Random();
         double[] vector = new double[length];
         for (int i = 0; i < length; i++)
@@ -106,7 +124,6 @@ public class MatrixMath {
         return transposed;
     }
 
-    //тестовый коммент. сохранится или нет?
 
     static double[] multipVectorNumber(double[] vector, double nunber) {
         double[] vectorNew = new double[vector.length];
