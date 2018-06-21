@@ -5,7 +5,7 @@ import static java.lang.Math.sqrt;
 
 public class Matrix {
 
-    private double[][] matrix;
+    protected double[][] matrix;
 
     public Matrix() {}
 
