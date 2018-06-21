@@ -38,10 +38,19 @@ class MatrixMathTest {
     @Test
     void searchPersonalVectorTest() {
         double[][] matrix = new double[][]{{2, 2, -8}, {2, -7, 10}, {-8, 10, -4}};
-        double[] expected = new MatrixMath().searchPersonalVector(matrix, new Double(0));
+        double[] expected = new MatrixMath().searchPersonalVector(matrix);
         double[] actual = MatrixMath.normalization(new double[]{1, -2, 2});
         assertEquals(MatrixMath.compareVectors(expected, actual) ||
                 MatrixMath.compareVectors(MatrixMath.multipVectorNumber(expected, -1), actual), true);
+    }
+
+    @Test
+    void searchPersonalNumber() {
+        double[][] matrix = new double[][]{{2, 2, -8}, {2, -7, 10}, {-8, 10, -4}};
+        MatrixMath mM = new MatrixMath();
+        double expected = mM.searchPersonalNumber(matrix, mM.searchPersonalVector(matrix));
+        double actual = -18;
+        assertEquals(mM.equals(expected, actual), true);
     }
 
     @Test
