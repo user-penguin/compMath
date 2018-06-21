@@ -1,3 +1,6 @@
+/**
+ * частичная проблема собственных чисел
+ */
 public class Lab_4 {
 
     public Lab_4(String path) {
@@ -8,7 +11,4 @@ public class Lab_4 {
 
         matrix.print();
     }
-
-
-
 }
