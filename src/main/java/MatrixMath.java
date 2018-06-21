@@ -92,6 +92,8 @@ public class MatrixMath {
         return transposed;
     }
 
+    //тестовый коммент. сохранится или нет?
+
     static double[] multipVectorNumber(double[] vector, double nunber) {
         double[] vectorNew = new double[vector.length];
         for (int i = 0; i < vector.length; i++)
