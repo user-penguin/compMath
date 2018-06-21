@@ -36,7 +36,8 @@ class MatrixMathTest {
     @Test
     void searchPersonalVectorTest() {
         double[][] matrix = new double[][]{{2, 2, -8}, {2, -7, 10}, {-8, 10, -4}};
-        double[] expected = new MatrixMath().searchPersonalVector(matrix);
+        double[] firstApproximate = MatrixMath.getRandomVector(matrix.length);
+        double[] expected = new MatrixMath().searchPersonalVector(matrix, firstApproximate);
         double[] actual = MatrixMath.normalization(new double[]{1, -2, 2});
         assertEquals(MatrixMath.compareVectors(expected, actual) ||
                 MatrixMath.compareVectors(MatrixMath.multipVectorNumber(expected, -1), actual), true);
@@ -44,11 +45,12 @@ class MatrixMathTest {
 
     @Test
     void searchPersonalNumber() {
+
         double[][] matrix = new double[][]{{2, 2, -8}, {2, -7, 10}, {-8, 10, -4}};
-        MatrixMath mM = new MatrixMath();
-        double expected = mM.searchPersonalNumber(matrix, mM.searchPersonalVector(matrix));
+        double[] firstApproximate = MatrixMath.getRandomVector(matrix.length);
+        double expected = MatrixMath.searchPersonalNumber(matrix, MatrixMath.searchPersonalVector(matrix, firstApproximate));
         double actual = -18;
-        assertEquals(mM.equals(expected, actual), true);
+        assertEquals(MatrixMath.equals(expected, actual), true);
     }
 
     @Test
@@ -58,6 +60,15 @@ class MatrixMathTest {
         double expected = MatrixMath.scalarMultipVector(vec1, vec2);
         double actual = 7;
         assertEquals(expected, actual);
+    }
+
+    @Test
+    void substract() {
+        double[] vec1 = new double[]{2, 3, 8};
+        double[] vec2 = new double[]{4, 5, -2};
+        double[] expected = MatrixMath.substract(vec1, vec2);
+        double[] actual = new double[]{-2, -2, 10};
+        assertArrayEquals(expected, actual);
     }
 
     @Test
