@@ -6,7 +6,6 @@ public class MatrixMath {
     static double E = 0.001;
     static double MAX_NUM_OF_ITER = 1_000;
 
-    // перемножение матриц
     static double[] multipMatrixVector(double[][] A, double[] firstVector){
         int width = A.length;
         double[] finalMatrix = new double[width];
@@ -15,7 +14,6 @@ public class MatrixMath {
         return finalMatrix;
     }
 
-    // строка на вектор
     private static double multipVector(double[] row, double[] vector){
         double result = 0;
         for(int i = 0; i < vector.length; i++)
@@ -23,7 +21,6 @@ public class MatrixMath {
         return result;
     }
 
-    // сравнение векторов
     static boolean compareVectors(double[] vectorPrev, double[] vectorNext){
         for (int i = 0; i < vectorNext.length; i++)
             if (!equals(vectorPrev[i], vectorNext[i]))
@@ -31,7 +28,6 @@ public class MatrixMath {
         return true;
     }
 
-    // сравнение чисел
     public static boolean equals(double num1, double num2) {
         if (Math.abs(num1 - num2) < E)
             return true;
