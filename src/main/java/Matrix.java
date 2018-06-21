@@ -5,6 +5,12 @@ public class Matrix {
 
     private double[][] matrix;
 
+    public Matrix() {}
+
+    public Matrix(double[][] matrix) {
+        this.matrix = matrix;
+    }
+
     private void addOneRow(String read, ArrayList<double[]> matrix) {
         String[] toSplit = read.split(" ");
         int width = toSplit.length;
@@ -36,15 +42,14 @@ public class Matrix {
     }
 
     public void print(double[] vector){
-        for (int i = 0; i < vector.length; i++)
-            System.out.println(vector[i]);
+        for (double i : vector)
+            System.out.println(i);
     }
 
     public void print(double[][] matrix) {
         for (double[] row : matrix) {
-            for (double i : row) {
+            for (double i : row)
                 System.out.print(i + " ");
-            }
             System.out.println();
         }
     }
@@ -52,8 +57,7 @@ public class Matrix {
     public double[][] toArray(ArrayList<double[]> matrixArr) {
         double[][] matrix = new double[matrixArr.size()][matrixArr.get(0).length];
         for(int i = 0; i < matrixArr.size(); i++)
-            for(int j = 0; j < matrixArr.get(0).length; j++)
-                matrix[i][j] = matrixArr.get(i)[j];
+            System.arraycopy (matrixArr, 0, matrix, 0, matrix.length);
         return matrix;
     }
 
