@@ -32,7 +32,7 @@ public class MatrixMath {
     }
 
     // сравнение чисел
-    private static boolean equals(double num1, double num2) {
+    public static boolean equals(double num1, double num2) {
         if (Math.abs(num1 - num2) < E)
             return true;
         else
@@ -51,28 +51,29 @@ public class MatrixMath {
         return normVector;
     }
 
-    static double[] searchPersonalVector (double[][] matrix, Double personalNumber) {
+    static double[] searchPersonalVector (double[][] matrix) {
         double[] vectorFirst = getRandomVector(matrix.length);
         double[] vectorSecond = new double[matrix.length];
 
         double personalNumberSec = 1;
 
         for (int i = 0; i < MAX_NUM_OF_ITER; i++) {
-            personalNumberSec = personalNumber;
-
             vectorSecond = multipMatrixVector(matrix, vectorFirst);
-
-            personalNumber = scalarMultipVector(vectorFirst, vectorSecond) / scalarMultipVector(vectorFirst, vectorFirst);
-            System.out.println(personalNumber);
-
             vectorSecond = normalization(vectorSecond);
-            if (i > 0 && equals(personalNumber, personalNumberSec))
+
+            if (compareVectors(vectorFirst, vectorSecond))
                 break;
-            
+
             vectorFirst = vectorSecond;
         }
 
         return vectorSecond;
+    }
+
+    static double searchPersonalNumber(double[][] matrix, double[] vector){
+        double[] vectorSecond = multipMatrixVector(matrix, vector);
+        double personalNumber = scalarMultipVector(vector, vectorSecond) / scalarMultipVector(vector, vector);
+        return personalNumber;
     }
 
     private static double[] getRandomVector(int length) {
