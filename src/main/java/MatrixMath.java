@@ -86,15 +86,36 @@ public class MatrixMath {
         return personalNumber;
     }
 
-//    static double searchSecPersNumber (double[][] matrix, double[] personalVector, double[] firstApproximation) {
-//
-//        double[][] transpMatrix = transposeMatrix(matrix);
-//        double[] persVectorOfTranspose = searchPersonalVector(transpMatrix, firstApproximation); //g1
-//
-//        double firstRatio = scalarMultipVector(firstApproximation, persVectorOfTranspose) /
-//                scalarMultipVector(personalVector, persVectorOfTranspose);
-//        firstApproxTransp = firstApproximation
-//    }
+
+    static double[] searchSecPersVector (double[][] matrix, double[] personalVector, double[] firstApproximation) {
+
+        double[][] transpMatrix = transposeMatrix(matrix);
+        double[] persVectorOfTranspose = searchPersonalVector(transpMatrix, firstApproximation);
+        double firstRatio = scalarMultipVector(firstApproximation, persVectorOfTranspose) /
+                scalarMultipVector(personalVector, persVectorOfTranspose);
+        double[] firstApproxTransp = substract(firstApproximation, multipVectorNumber(personalVector, firstRatio));
+        double[] secApproxTransp = new double[personalVector.length];
+
+        for (int i = 0; i < MAX_NUM_OF_ITER; i++) {
+            secApproxTransp = multipMatrixVector(transpMatrix, firstApproxTransp);
+            secApproxTransp = normalization(secApproxTransp);
+            secApproxTransp = getProportion(secApproxTransp, persVectorOfTranspose, personalVector);
+
+            if (compareVectors(firstApproxTransp, secApproxTransp))
+                break;
+
+            firstApproxTransp = secApproxTransp;
+        }
+
+        return secApproxTransp;
+    }
+
+
+    static double[] getProportion (double[] approx, double[] personVectorTransp, double[] personVectorUsual) {
+        double component = scalarMultipVector(approx, personVectorTransp) /
+                scalarMultipVector(personVectorUsual, personVectorTransp);
+        return substract(approx, multipVectorNumber(personVectorUsual, component));
+    }
 
     static double[] substract(double[] firstVector, double[] secondVector){
         double[] result = new double[firstVector.length];
