@@ -88,4 +88,48 @@ public class Matrix {
     private double calculateMu(int k, int l){
         return (2 * matrix[k][l]) / (matrix[k][k] - matrix[l][l]);
     }
+
+    public void rotation() {
+        int size = matrix.length;
+
+        double sumRowMatrix[] = new double[size];
+        for(int i = 0; i < size; i++)
+            for(int j = 0; j < size; j++)
+                if(i != j)
+                    sumRowMatrix[i] += matrix[i][j] * matrix[i][j];
+
+        double[] lambda = new double[size];
+        int[] indexes = new int[2];
+        while (Math.abs(getElement(sumRowMatrix, indexes)) < 0) {
+            // todo
+        }
+
+        for(int i = 0; i < size; i++)
+            lambda[i] = matrix[i][i];
+    }
+
+    private double getElement(double[] sumRowMatrix, int[] indexes) {
+        double max = 0;
+        indexes[0] = 0;
+        for (int i = 0; i < matrix.length; i++)
+            if (max < sumRowMatrix[i]) {
+                max = sumRowMatrix[i];
+                indexes[0] = i;
+            }
+
+        max = 0;
+        indexes[1] = 0;
+        for (int i = 0; i < matrix.length; i++)
+            if (max < Math.abs(matrix[indexes[0]][i])) {
+                max = matrix[indexes[0]][i];
+                indexes[1] = i;
+            }
+
+        if (indexes[0] > indexes[1]) {
+            int change = indexes[0];
+            indexes[0] = indexes[1];
+            indexes[1] = change;
+        }
+        return max;
+    }
 }
