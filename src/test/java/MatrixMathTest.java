@@ -61,4 +61,16 @@ class MatrixMathTest {
         double actual = 7;
         assertEquals(expected, actual);
     }
+
+    @Test
+    void transposeMatrix() {
+        double[][] matrix = new double[][]{{1, 2, 3}, {4, 5, 6}, {-7, -8, 9}};
+        MatrixMath mM = new MatrixMath();
+        double[][] expected = new MatrixMath().transposeMatrix(matrix);
+        double[][] actual = new double[][]{{1, 4, -7}, {2, 5, -8}, {3, 6, 9}};
+
+        for(int i = 0; i < matrix.length; i++)
+            assertArrayEquals(expected[i], actual[i]);
+    }
+
 }

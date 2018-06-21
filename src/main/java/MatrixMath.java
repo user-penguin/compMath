@@ -80,6 +80,18 @@ public class MatrixMath {
         return vector;
     }
 
+    static double[][] transposeMatrix(double[][] matrix){
+        double[][] transposed = new double[matrix.length][matrix.length];
+        double change = 0;
+        for(int i = 0; i < matrix.length; i++)
+            for(int j = i; j < matrix.length; j++){
+                transposed[i][j] = matrix[j][i];
+                transposed[j][i] = matrix[i][j];
+            }
+
+        return transposed;
+    }
+
     static double[] multipVectorNumber(double[] vector, double nunber) {
         double[] vectorNew = new double[vector.length];
         for (int i = 0; i < vector.length; i++)
