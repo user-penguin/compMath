@@ -14,6 +14,20 @@ public class MatrixMath {
         return finalMatrix;
     }
 
+    static double[][] multipMatrixMatrix(double[][] A, double[][] B) {
+        int width = B[0].length;
+        int height = A.length;
+        double[][] finalMatrix = new double[height][];
+
+        for (int i = 0; i < height; i++) {
+            double[] vector = new double[B.length];
+            for (int j = 0; j < B.length; j++)
+                vector[j] = B[j][i];
+            finalMatrix[i] = multipMatrixVector(A, vector);
+        }
+        return transposeMatrix(finalMatrix);
+    }
+
     private static double multipVector(double[] row, double[] vector){
         double result = 0;
         for(int i = 0; i < vector.length; i++)
