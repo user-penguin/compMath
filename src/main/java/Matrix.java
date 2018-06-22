@@ -82,30 +82,6 @@ public class Matrix {
         return ret;
     }
 
-    // protected
-
-    protected double calculateMu(int k, int l){
-        return (2 * matrix[k][l]) / (matrix[k][k] - matrix[l][l]);
-    }
-
-    protected double calculateAlpha(int k, int l) {
-        if (matrix[k][k] == matrix[l][l])
-            return Math.sqrt(0.5);
-        else {
-            double mu = calculateMu(k, l);
-            return Math.sqrt((1 + 1 / (Math.sqrt(1 + mu * mu))) / 2);
-        }
-    }
-
-    protected double calculateBetta(int k, int l) {
-        if (matrix[k][k] == matrix[l][l])
-            return Math.sqrt(0.5);
-        else {
-            double mu = calculateMu(k, l);
-            return Math.signum(mu) * Math.sqrt((1 - 1 / (Math.sqrt(1 + mu * mu))) / 2);
-        }
-    }
-
     // private
 
     private void addOneRow(String readRow, ArrayList<double[]> matrix) {
