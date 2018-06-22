@@ -14,7 +14,7 @@ public class Lab_5 {
 
     // constructors
 
-    Lab_5(String path) {
+    public Lab_5(String path) {
         Matrix start = new Matrix(path);
         Matrix A = new Matrix(path);
         double[] sumA = calculateSumA(A.getMatrix());
