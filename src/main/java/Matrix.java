@@ -33,6 +33,11 @@ public class Matrix {
         System.out.println();
     }
 
+    public void print(String str) {
+        System.out.println(str);
+        print();
+    }
+
     public void print() {
         for (double[] row : matrix)
                 print(row);
