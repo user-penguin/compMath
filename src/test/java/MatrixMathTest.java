@@ -107,4 +107,17 @@ class MatrixMathTest {
         double[] actual = new double[]{0.2, 0.4, -0.6, 0.8, 1};
         assertArrayEquals(expected, actual);
     }
+
+    @Test
+    void reverse() {
+        double[][] matrix = new double[][]{
+                {3, 4},
+                {5, 7}};
+        double[][] expected = MatrixMath.reverseMatrix(matrix);
+        double[][] actual = new double[][]{
+                {7.0, -4.0},
+                {-5.0, 3.0}};
+        for (int i = 0; i < matrix.length; i++)
+            assertEquals(MatrixMath.equals(expected[i], actual[i]), true);
+    }
 }
