@@ -118,6 +118,14 @@ public class MatrixMath {
         return vectorSecond;
     }
 
+    public static double searchCloserNumber (double sourceNum, double[][] matrix) {
+        double[][] matrixB = findMatrixB(matrix, sourceNum);
+        double[] firstVector = searchPersonalVector(matrixB, getRandomVector(matrix.length));
+        double[] secondVector = multip(matrixB, firstVector);
+
+        return sourceNum + (scalarMultip(firstVector, firstVector) / scalarMultip(secondVector, firstVector));
+    }
+
     public static double[] searchSecPersVector (double[][] matrix, double[] personalVector, double[] firstApproximation) {
 
         double[][] transpMatrix = new Matrix(matrix).transpose();
@@ -166,13 +174,13 @@ public class MatrixMath {
         return result.getData();
     }
 
-//    public static double[][] findMatrixB (double[][] matrix, double personalNumber) {
-//        double[][] matrixA = matrix;
-//        UnitMatrix Umatrix = new UnitMatrix(matrix.length);
-//        double[][] unitMatrix = Umatrix.getMatrix();
-//
-//        return substract(matrixA, multip(unitMatrix, personalNumber))
-//    }
+    public static double[][] findMatrixB (double[][] matrix, double personalNumber) {
+        double[][] matrixA = matrix;
+        UnitMatrix Umatrix = new UnitMatrix(matrix.length);
+        double[][] unitMatrix = Umatrix.getMatrix();
+
+        return reverseMatrix(substract(matrixA, multip(unitMatrix, personalNumber)));
+    }
 
     public static double[] normalization(double[] vector) {
         double max = Math.abs(vector[0]);

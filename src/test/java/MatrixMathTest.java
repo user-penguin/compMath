@@ -150,4 +150,16 @@ class MatrixMathTest {
         for (int i = 0; i < matrix1.length; i++)
             assertArrayEquals(expected[i], actual[i]);
     }
+
+    @Test
+    void closerNumber() {
+        double[][] matrix = new double[][] {
+                {2, 2, -8},
+                {2, -7, 10},
+                {-8, 10, -4}};
+        double closerNum = 20;
+        double expected = MatrixMath.searchCloserNumber(closerNum, matrix);
+        double actual = 9;
+        assertEquals(MatrixMath.equals(expected, actual), true);
+    }
 }
