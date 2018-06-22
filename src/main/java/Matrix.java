@@ -29,14 +29,13 @@ public class Matrix {
 
     public void print(double[] vector){
         for (double i : vector)
-            System.out.println(i + " ");
+            System.out.print(i + " ");
+        System.out.println();
     }
 
     public void print() {
-        for (double[] row : matrix) {
+        for (double[] row : matrix)
                 print(row);
-            System.out.println();
-        }
     }
 
     public double[][] transpose(){
@@ -50,38 +49,46 @@ public class Matrix {
         return transposed;
     }
 
-    // todo
-    /*public void rotation () {
-        int size = matrix.length;
+    public double searchElement(double[] sumRowMatrix, int[] indexes) {
+        double max = 0;
+        indexes[0] = 0;
+        for (int i = 0; i < matrix.length; i++)
+            if (max < sumRowMatrix[i]) {
+                max = sumRowMatrix[i];
+                indexes[0] = i;
+            }
 
-        double sumRowMatrix[] = new double[size];
-        for(int i = 0; i < size; i++)
-            for(int j = 0; j < size; j++)
-                if(i != j)
-                    sumRowMatrix[i] += matrix[i][j] * matrix[i][j];
+        max = 0;
+        indexes[1] = 0;
+        for (int i = 0; i < matrix.length; i++)
+            if (max < Math.abs(matrix[indexes[0]][i])) {
+                max = matrix[indexes[0]][i];
+                indexes[1] = i;
+            }
 
-        int[] indexes = new int[2];
-
-        //double[] lambda = new double[size];
-
-        while (!(Math.abs(searchElement(sumRowMatrix, indexes)) < 0)) {
-            double alpha = calculateAlpha(indexes[0], indexes[1]);
-            double betta = calculateBetta(indexes[0], indexes[1]);
-            UklMatrix U = new UklMatrix(size, indexes[0], indexes[1], alpha, betta);
-            Matrix UT = new Matrix(MatrixMath.transposeMatrix(U.getMatrix()));
-
-            Matrix B = new Matrix(MatrixMath.multip(UT.getMatrix(), matrix));
-            Matrix matrix = new Matrix(MatrixMath.multip(B.getMatrix(), U.getMatrix()));
+        if (indexes[0] > indexes[1]) {
+            int change = indexes[0];
+            indexes[0] = indexes[1];
+            indexes[1] = change;
         }
-    }*/
+        return max;
+    }
 
-    // private
+    public Matrix copy() {
+        Matrix ret = new Matrix();
+        for (int i = 0; i < matrix.length; i++)
+            for (int j = 0; j < matrix[0].length; j++)
+                ret.getMatrix()[i][j] = matrix[i][j];
+        return ret;
+    }
 
-    private double calculateMu(int k, int l){
+    // protected
+
+    protected double calculateMu(int k, int l){
         return (2 * matrix[k][l]) / (matrix[k][k] - matrix[l][l]);
     }
 
-    private double calculateAlpha(int k, int l) {
+    protected double calculateAlpha(int k, int l) {
         if (matrix[k][k] == matrix[l][l])
             return Math.sqrt(0.5);
         else {
@@ -90,7 +97,7 @@ public class Matrix {
         }
     }
 
-    private double calculateBetta(int k, int l) {
+    protected double calculateBetta(int k, int l) {
         if (matrix[k][k] == matrix[l][l])
             return Math.sqrt(0.5);
         else {
@@ -98,6 +105,8 @@ public class Matrix {
             return Math.signum(mu) * Math.sqrt((1 - 1 / (Math.sqrt(1 + mu * mu))) / 2);
         }
     }
+
+    // private
 
     private void addOneRow(String readRow, ArrayList<double[]> matrix) {
         String[] toSplit = readRow.split(" ");
@@ -131,30 +140,5 @@ public class Matrix {
         catch (IOException e) {
             e.printStackTrace();
         }
-    }
-
-    private double searchElement(double[] sumRowMatrix, int[] indexes) {
-        double max = 0;
-        indexes[0] = 0;
-        for (int i = 0; i < matrix.length; i++)
-            if (max < sumRowMatrix[i]) {
-                max = sumRowMatrix[i];
-                indexes[0] = i;
-            }
-
-        max = 0;
-        indexes[1] = 0;
-        for (int i = 0; i < matrix.length; i++)
-            if (max < Math.abs(matrix[indexes[0]][i])) {
-                max = matrix[indexes[0]][i];
-                indexes[1] = i;
-            }
-
-        if (indexes[0] > indexes[1]) {
-            int change = indexes[0];
-            indexes[0] = indexes[1];
-            indexes[1] = change;
-        }
-        return max;
     }
 }
