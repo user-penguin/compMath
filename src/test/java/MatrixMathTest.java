@@ -5,47 +5,96 @@ import static org.junit.jupiter.api.Assertions.*;
 class MatrixMathTest {
 
     @Test
-    void multipMatrix() {
-        double[][] A = new double[][]{{2, 1}, {3, 4}};
+    void multipMatrixVector() {
+        double[][] A = new double[][]{
+                {2, 1},
+                {3, 4}
+        };
         double[] vector = new double[]{7, 8};
         double[] expected = MatrixMath.multip(A, vector);
         double[] actual = new double[]{22, 53};
-
         assertArrayEquals(expected, actual);
     }
 
     @Test
-    void compareVectors1() {
-        boolean expected = MatrixMath.compareVectors(new double[]{1, 2, 3}, new double[]{1, 2, 3});
+    void multipMatrixMatrix() {
+        Matrix A = new Matrix(new double[][]{
+                {2, 3},
+                {4, 5},
+                {6, 7}
+        });
+        Matrix B = new Matrix(new double[][]{
+                {1, 2, 3},
+                {4, 2, 3}
+        });
+        Matrix expected = new Matrix(MatrixMath.multip(A.getMatrix(), B.getMatrix()));
+        Matrix actual = new Matrix(new double[][]{
+                {14, 10, 15},
+                {24, 18, 27},
+                {34, 26, 39}
+        });
+        for (int i = 0; i < actual.getMatrix().length; i++)
+            assertArrayEquals(expected.getMatrix()[i], actual.getMatrix()[i]);
+    }
+
+    @Test
+    void muilipVectorNumber() {
+        double[] vector = new double[]{1, 2, -4};
+        int number = 3;
+        double[] actual = MatrixMath.multip(vector, number);
+        double[] expected = new double[]{3, 6, -12};
+        assertArrayEquals(expected, actual);
+    }
+
+    @Test
+    void scalarMultip() {
+        double[] vector1 = new double[]{2, 3, 8};
+        double[] vector2 = new double[]{4, 5, -2};
+        double expected = MatrixMath.scalarMultip(vector1, vector2);
+        double actual = 7;
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    void substract() {
+        double[] vector1 = new double[]{2, 3, 8};
+        double[] vector2 = new double[]{4, 5, -2};
+        double[] expected = MatrixMath.substract(vector1, vector2);
+        double[] actual = new double[]{-2, -2, 10};
+        assertArrayEquals(expected, actual);
+    }
+
+    @Test
+    void equals1() {
+        boolean expected = MatrixMath.equals(new double[]{1, 2, 3}, new double[]{1, 2, 3});
         assertEquals(expected, true);
     }
 
     @Test
-    void compareVectors2() {
-        boolean expected = MatrixMath.compareVectors(new double[]{1 + Math.E * 2, 2, 3}, new double[]{1, 2, 3});
+    void equals2() {
+        boolean expected = MatrixMath.equals(new double[]{1 + Math.E * 2, 2, 3}, new double[]{1, 2, 3});
         assertEquals(expected, false);
     }
 
     @Test
-    void normalizationTest() {
-        double[] expected = new MatrixMath().normalization(new double[]{1, 2, -3, 4, 5});
-        double[] actual = new double[]{0.2, 0.4, -0.6, 0.8, 1};
-        assertArrayEquals(expected, actual);
-    }
-
-    @Test
-    void searchPersonalVectorTest() {
-        double[][] matrix = new double[][]{{2, 2, -8}, {2, -7, 10}, {-8, 10, -4}};
+    void searchPersonalVector() {
+        double[][] matrix = new double[][]{
+                {2, 2, -8},
+                {2, -7, 10},
+                {-8, 10, -4}};
         double[] firstApproximate = MatrixMath.getRandomVector(matrix.length);
-        double[] expected = new MatrixMath().searchPersonalVector(matrix, firstApproximate);
+        double[] expected = MatrixMath.searchPersonalVector(matrix, firstApproximate);
         double[] actual = MatrixMath.normalization(new double[]{1, -2, 2});
-        assertEquals(MatrixMath.compareVectors(expected, actual) ||
-                MatrixMath.compareVectors(MatrixMath.multipVectorNumber(expected, -1), actual), true);
+        assertEquals(MatrixMath.equals(expected, actual) ||
+                MatrixMath.equals(MatrixMath.multip(expected, -1), actual), true);
     }
 
     @Test
     void searchPersonalNumber() {
-        double[][] matrix = new double[][]{{2, 2, -8}, {2, -7, 10}, {-8, 10, -4}};
+        double[][] matrix = new double[][]{
+                {2, 2, -8},
+                {2, -7, 10},
+                {-8, 10, -4}};
         double[] firstApproximate = MatrixMath.getRandomVector(matrix.length);
         double expected = MatrixMath.searchPersonalNumber(matrix, MatrixMath.searchPersonalVector(matrix, firstApproximate));
         double actual = -18;
@@ -53,43 +102,9 @@ class MatrixMathTest {
     }
 
     @Test
-    void searchSecondPersonalNumber() {
-        double[][] matrix = new double[][]{{2, 2, -8}, {2, -7, 10}, {-8, 10, -4}};
-        double[] firstApproximate = MatrixMath.getRandomVector(matrix.length);
-        double[] persVecSec = MatrixMath.searchSecPersVector(matrix,
-                MatrixMath.searchPersonalVector(matrix, firstApproximate), firstApproximate);
-        double expected = MatrixMath.searchPersonalNumber(matrix, persVecSec);
-        double actual = 9;
-        assertEquals(MatrixMath.equals(expected, actual), true);
-    }
-
-    @Test
-    void scalarMultipVectorTest() {
-        double[] vec1 = new double[]{2, 3, 8};
-        double[] vec2 = new double[]{4, 5, -2};
-        double expected = MatrixMath.scalarMultipVector(vec1, vec2);
-        double actual = 7;
-        assertEquals(expected, actual);
-    }
-
-    @Test
-    void substract() {
-        double[] vec1 = new double[]{2, 3, 8};
-        double[] vec2 = new double[]{4, 5, -2};
-        double[] expected = MatrixMath.substract(vec1, vec2);
-        double[] actual = new double[]{-2, -2, 10};
+    void normalization() {
+        double[] expected = MatrixMath.normalization(new double[]{1, 2, -3, 4, 5});
+        double[] actual = new double[]{0.2, 0.4, -0.6, 0.8, 1};
         assertArrayEquals(expected, actual);
     }
-
-
-    @Test
-    void multipMatrixMatrixTest() {
-        Matrix A = new Matrix(new double[][]{{2, 3}, {4, 5}, {6, 7}});
-        Matrix B = new Matrix(new double[][]{{1, 2, 3}, {4, 2, 3}});
-        Matrix expected = new Matrix(MatrixMath.multip(A.getMatrix(), B.getMatrix()));
-        Matrix actual = new Matrix(new double[][]{{14, 10, 15}, {24, 18, 27}, {34, 26, 39}});
-        for (int i = 0; i < actual.getMatrix().length; i++)
-            assertArrayEquals(expected.getMatrix()[i], actual.getMatrix()[i]);
-    }
-
 }

@@ -9,30 +9,30 @@ public class Matrix {
 
     // constructors
 
-    protected  Matrix () {
+    protected  Matrix() {
 
     }
 
-    public Matrix (String path) {
+    public Matrix(String path) {
         fillFromFile(path);
     }
 
-    public Matrix (double[][] matrix) {
+    public Matrix(double[][] matrix) {
         this.matrix = matrix;
     }
 
     // public
 
-    public double[][] getMatrix () {
+    public double[][] getMatrix() {
         return matrix;
     }
 
-    public void print (double[] vector){
+    public void print(double[] vector){
         for (double i : vector)
             System.out.println(i + " ");
     }
 
-    public void print () {
+    public void print() {
         for (double[] row : matrix) {
                 print(row);
             System.out.println();
@@ -77,11 +77,11 @@ public class Matrix {
 
     // private
 
-    private double calculateMu (int k, int l){
+    private double calculateMu(int k, int l){
         return (2 * matrix[k][l]) / (matrix[k][k] - matrix[l][l]);
     }
 
-    private double calculateAlpha (int k, int l) {
+    private double calculateAlpha(int k, int l) {
         if (matrix[k][k] == matrix[l][l])
             return Math.sqrt(0.5);
         else {
@@ -90,7 +90,7 @@ public class Matrix {
         }
     }
 
-    private double calculateBetta (int k, int l) {
+    private double calculateBetta(int k, int l) {
         if (matrix[k][k] == matrix[l][l])
             return Math.sqrt(0.5);
         else {
@@ -99,7 +99,7 @@ public class Matrix {
         }
     }
 
-    private void addOneRow (String readRow, ArrayList<double[]> matrix) {
+    private void addOneRow(String readRow, ArrayList<double[]> matrix) {
         String[] toSplit = readRow.split(" ");
         int width = toSplit.length;
         double oneString[] = new double[width];
