@@ -47,6 +47,20 @@ class MatrixMathTest {
     }
 
     @Test
+    void multipMatrixNumber() {
+        double[][] matrix = new double[][]{
+                {3, 0},
+                {-5, 7}};
+        double b = 3;
+        double[][] expected = MatrixMath.multip(matrix, b);
+        double[][] actual = new double[][]{
+                {9, 0},
+                {-15, 21}};
+        for (int i = 0; i < matrix.length; i++)
+            assertArrayEquals(expected[i], actual[i]);
+    }
+
+    @Test
     void scalarMultip() {
         double[] vector1 = new double[]{2, 3, 8};
         double[] vector2 = new double[]{4, 5, -2};

@@ -45,6 +45,18 @@ public class MatrixMath {
         return vectorNew;
     }
 
+    public static double[][] multip(double[][] A, double b) {
+        int width = A[0].length;
+        int height = A.length;
+        double[][] finalMatrix = new double[height][width];
+
+        for (int i = 0; i < height; i++) {
+            for (int j = 0; j < width; j++)
+                finalMatrix[i][j] = A[i][j] * b;
+        }
+        return finalMatrix;
+    }
+
     public static double scalarMultip(double[] vector1, double[] vector2) {
         double scalar = 0;
         for (int i = 0; i < vector1.length; i++)
@@ -153,10 +165,13 @@ public class MatrixMath {
 
         return result.getData();
     }
-//todo
+
 //    public static double[][] findMatrixB (double[][] matrix, double personalNumber) {
 //        double[][] matrixA = matrix;
-//        return substract()
+//        UnitMatrix Umatrix = new UnitMatrix(matrix.length);
+//        double[][] unitMatrix = Umatrix.getMatrix();
+//
+//        return substract(matrixA, multip(unitMatrix, personalNumber))
 //    }
 
     public static double[] normalization(double[] vector) {
