@@ -9,8 +9,14 @@ import static java.lang.Math.abs;
 public class Lab_5 {
 
     public static void main(String[] arg) {
-        Matrix start = new Matrix("input.txt");
-        Matrix A = new Matrix("input.txt");
+        Lab_5 lab_5 = new Lab_5("input.txt");
+    }
+
+    // constructors
+
+    Lab_5(String path) {
+        Matrix start = new Matrix(path);
+        Matrix A = new Matrix(path);
         double[] sumA = calculateSumA(A.getMatrix());
         UnitMatrix e = new UnitMatrix(A.getMatrix().length);
         int[] indexes = new int[2];
@@ -38,6 +44,8 @@ public class Lab_5 {
 
         print(personalNumbers, e, nevjazki, start);
     }
+
+    // private
 
     private static void print(double[] personalNumbers, Matrix e, Matrix nevjazki, Matrix start) {
         start.print("Исходная матрица A: ");
@@ -143,7 +151,7 @@ public class Lab_5 {
         }
     }
 
-    public static void nevjazka(double A[][], double lambda[], double e[][], double nevjazki[][]) {
+    private static void nevjazka(double A[][], double lambda[], double e[][], double nevjazki[][]) {
         int n = A.length;
         for(int i = 0; i < n; i++)
             for(int j = 0; j < n; j++) {

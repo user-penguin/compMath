@@ -9,7 +9,7 @@ public class Matrix {
 
     // constructors
 
-    protected  Matrix() {
+    public Matrix() {
 
     }
 
@@ -52,39 +52,6 @@ public class Matrix {
                 transposed[j][i] = matrix[i][j];
             }
         return transposed;
-    }
-
-    public double searchElement(double[] sumRowMatrix, int[] indexes) {
-        double max = 0;
-        indexes[0] = 0;
-        for (int i = 0; i < matrix.length; i++)
-            if (max < sumRowMatrix[i]) {
-                max = sumRowMatrix[i];
-                indexes[0] = i;
-            }
-
-        max = 0;
-        indexes[1] = 0;
-        for (int i = 0; i < matrix.length; i++)
-            if (max < Math.abs(matrix[indexes[0]][i])) {
-                max = matrix[indexes[0]][i];
-                indexes[1] = i;
-            }
-
-        if (indexes[0] > indexes[1]) {
-            int change = indexes[0];
-            indexes[0] = indexes[1];
-            indexes[1] = change;
-        }
-        return max;
-    }
-
-    public Matrix copy() {
-        Matrix ret = new Matrix();
-        for (int i = 0; i < matrix.length; i++)
-            for (int j = 0; j < matrix[0].length; j++)
-                ret.getMatrix()[i][j] = matrix[i][j];
-        return ret;
     }
 
     // private

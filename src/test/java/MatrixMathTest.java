@@ -97,7 +97,7 @@ class MatrixMathTest {
                 {2, -7, 10},
                 {-8, 10, -4}};
         double[] firstApproximate = MatrixMath.getRandomVector(matrix.length);
-        double[] expected = MatrixMath.searchPersonalVector(matrix, firstApproximate);
+        double[] expected = Lab_4.searchPersonalVector(matrix, firstApproximate);
         double[] actual = MatrixMath.normalization(new double[]{1, -2, 2});
         assertEquals(MatrixMath.equals(expected, actual) ||
                 MatrixMath.equals(MatrixMath.multip(expected, -1), actual), true);
@@ -110,7 +110,7 @@ class MatrixMathTest {
                 {2, -7, 10},
                 {-8, 10, -4}};
         double[] firstApproximate = MatrixMath.getRandomVector(matrix.length);
-        double expected = MatrixMath.searchPersonalNumber(matrix, MatrixMath.searchPersonalVector(matrix, firstApproximate));
+        double expected = Lab_4.searchPersonalNumber(matrix, Lab_4.searchPersonalVector(matrix, firstApproximate));
         double actual = -18;
         assertEquals(MatrixMath.equals(expected, actual), true);
     }
@@ -158,7 +158,7 @@ class MatrixMathTest {
                 {2, -7, 10},
                 {-8, 10, -4}};
         double closerNum = 20;
-        double expected = MatrixMath.searchCloserNumber(closerNum, matrix);
+        double expected = Lab_4.searchCloserNumber(closerNum, matrix);
         double actual = 9;
         assertEquals(MatrixMath.equals(expected, actual), true);
     }

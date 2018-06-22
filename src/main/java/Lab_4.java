@@ -6,25 +6,31 @@ import java.util.Scanner;
 
 public class Lab_4 {
 
+    // properties
+
     private double personalNumbers;
+
     private double[] personalVector;
+
     private double[] firstApproximation;
+
+    // constructors
 
     public Lab_4(String path) {
         Matrix matrix = new Matrix(path);
 
         firstApproximation = MatrixMath.getRandomVector(matrix.getMatrix().length);
-        personalVector = MatrixMath.searchPersonalVector(matrix.getMatrix(), firstApproximation);
-        personalNumbers = MatrixMath.searchPersonalNumber(matrix.getMatrix(), personalVector);
+        personalVector = searchPersonalVector(matrix.getMatrix(), firstApproximation);
+        personalNumbers = searchPersonalNumber(matrix.getMatrix(), personalVector);
 
         System.out.println("Собственный вектор, соответствующий " +
                 "наибольшему по модулю собственному числу:");
         new Matrix().print(personalVector);
         System.out.println("Наибольшее по модулю собственное число = " + personalNumbers);
 
-        double[] secondPersonalVector = MatrixMath.searchSecPersVector(matrix.getMatrix(),
+        double[] secondPersonalVector = searchSecPersVector(matrix.getMatrix(),
                 personalVector, firstApproximation);
-        double secondPersonalNumber = MatrixMath.searchPersonalNumber(matrix.getMatrix(), secondPersonalVector);
+        double secondPersonalNumber = searchPersonalNumber(matrix.getMatrix(), secondPersonalVector);
 
 
         System.out.println("Собственный вектор, соответствующий " +
@@ -39,7 +45,78 @@ public class Lab_4 {
 
         double nearNumber = in.nextDouble();
         System.out.println("Ближайшее к " + nearNumber + "= " +
-                MatrixMath.searchCloserNumber(nearNumber, matrix.getMatrix()));
+                searchCloserNumber(nearNumber, matrix.getMatrix()));
+    }
 
+    // public
+
+    public static double[] calculateProportion(double[] approx, double[] personVectorTransp, double[] personVectorUsual) {
+        double component = MatrixMath.scalarMultip(approx, personVectorTransp) /
+                MatrixMath.scalarMultip(personVectorUsual, personVectorTransp);
+        return MatrixMath.substract(approx, MatrixMath.multip(personVectorUsual, component));
+    }
+
+    public static double[] searchPersonalVector (double[][] matrix, double[] firstApproximation) {
+        double[] vectorFirst = firstApproximation;
+        double[] vectorSecond = new double[matrix.length];
+
+        double personalNumberSec = 1;
+
+        for (int i = 0; i < MatrixMath.MAX_NUM_OF_ITER; i++) {
+            vectorSecond = MatrixMath.multip(matrix, vectorFirst);
+            vectorSecond = MatrixMath.normalization(vectorSecond);
+
+            if (MatrixMath.equals(vectorFirst, vectorSecond))
+                break;
+
+            vectorFirst = vectorSecond;
+        }
+
+        return vectorSecond;
+    }
+
+    public static double searchCloserNumber (double sourceNum, double[][] matrix) {
+        double[][] matrixB = findMatrixB(matrix, sourceNum);
+        double[] firstVector = searchPersonalVector(matrixB, MatrixMath.getRandomVector(matrix.length));
+        double[] secondVector = MatrixMath.multip(matrixB, firstVector);
+
+        return sourceNum + (MatrixMath.scalarMultip(firstVector, firstVector) / MatrixMath.scalarMultip(secondVector, firstVector));
+    }
+
+    public static double[] searchSecPersVector (double[][] matrix, double[] personalVector, double[] firstApproximation) {
+
+        double[][] transpMatrix = new Matrix(matrix).transpose();
+        double[] persVectorOfTranspose = searchPersonalVector(transpMatrix, firstApproximation);
+        double firstRatio = MatrixMath.scalarMultip(firstApproximation, persVectorOfTranspose) /
+                MatrixMath.scalarMultip(personalVector, persVectorOfTranspose);
+        double[] firstApproxTransp = MatrixMath.substract(firstApproximation, MatrixMath.multip(personalVector, firstRatio));
+        double[] secApproxTransp = new double[personalVector.length];
+
+        for (int i = 0; i < MatrixMath.MAX_NUM_OF_ITER; i++) {
+            secApproxTransp = MatrixMath.multip(transpMatrix, firstApproxTransp);
+            secApproxTransp = MatrixMath.normalization(secApproxTransp);
+            secApproxTransp = calculateProportion(secApproxTransp, persVectorOfTranspose, personalVector);
+
+            if (MatrixMath.equals(firstApproxTransp, secApproxTransp))
+                break;
+
+            firstApproxTransp = secApproxTransp;
+        }
+
+        return secApproxTransp;
+    }
+
+    public static double searchPersonalNumber(double[][] matrix, double[] vector){
+        double[] vectorSecond = MatrixMath.multip(matrix, vector);
+        double personalNumber = MatrixMath.scalarMultip(vector, vectorSecond) / MatrixMath.scalarMultip(vector, vector);
+        return personalNumber;
+    }
+
+    public static double[][] findMatrixB (double[][] matrix, double personalNumber) {
+        double[][] matrixA = matrix;
+        UnitMatrix Umatrix = new UnitMatrix(matrix.length);
+        double[][] unitMatrix = Umatrix.getMatrix();
+
+        return MatrixMath.reverseMatrix(MatrixMath.substract(matrixA, MatrixMath.multip(unitMatrix, personalNumber)));
     }
 }
