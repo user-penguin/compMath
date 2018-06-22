@@ -120,4 +120,20 @@ class MatrixMathTest {
         for (int i = 0; i < matrix.length; i++)
             assertEquals(MatrixMath.equals(expected[i], actual[i]), true);
     }
+
+    @Test
+    void matrixSubstract() {
+        double[][] matrix1 = new double[][]{
+                {3, 4},
+                {5, 7}};
+        double[][] matrix2 = new double[][]{
+                {1, -2},
+                {6, 7}};
+        double[][] expected = MatrixMath.substract(matrix1, matrix2);
+        double[][] actual = new double[][]{
+                {2, 6},
+                {-1, 0}};
+        for (int i = 0; i < matrix1.length; i++)
+            assertArrayEquals(expected[i], actual[i]);
+    }
 }

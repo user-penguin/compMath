@@ -65,6 +65,14 @@ public class MatrixMath {
         return result;
     }
 
+    public static double[][] substract(double[][] matrix1, double[][] matrix2) {
+        double[][] result = new double[matrix1.length][matrix1.length];
+        for (int i = 0; i < matrix1.length; i++)
+            for (int j = 0; j < matrix1.length; j++)
+                result[i][j] = matrix1[i][j] - matrix2[i][j];
+        return result;
+    }
+
     public static boolean equals(double num1, double num2) {
         if (Math.abs(num1 - num2) < E)
             return true;
@@ -145,6 +153,11 @@ public class MatrixMath {
 
         return result.getData();
     }
+//todo
+//    public static double[][] findMatrixB (double[][] matrix, double personalNumber) {
+//        double[][] matrixA = matrix;
+//        return substract()
+//    }
 
     public static double[] normalization(double[] vector) {
         double max = Math.abs(vector[0]);
