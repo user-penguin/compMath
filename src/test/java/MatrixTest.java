@@ -1,57 +1,41 @@
 import org.junit.jupiter.api.Test;
 
-import java.util.ArrayList;
-
 import static org.junit.jupiter.api.Assertions.*;
 
 class MatrixTest {
 
-    @org.junit.jupiter.api.Test
+    @Test
     void fillFromFile() {
-        Matrix m = new Matrix();
-        m.fillFromFile("/home/dim/workspace/tests/in41.txt");
-
-        double[][] expected = m.getMatrix();
-        double[][] actual = new double[][]{
+        Matrix expectedMatrix = new Matrix("in41.txt");
+        Matrix actualMatrix = new Matrix(new double[][]{
             {2.2, 1, 0.5, 2},
             {1, 1.3, 2, 1},
             {0.5, 2, 0.5, 1.6},
             {2, 1, 1.6, 2}
-        };
-
+        });
+        double[][] expected = expectedMatrix.getMatrix();
+        double[][] actual = actualMatrix.getMatrix();
         assertEquals(expected.length, actual.length);
         for(int i = 0; i < actual.length; i++)
             assertArrayEquals(expected[i], actual[i]);
     }
 
     @Test
-    void fillFromFile1() {
-        Matrix m = new Matrix();
-        m.fillFromFile("/home/dim/workspace/tests/in42.txt");
-
-        double[][] expected = m.getMatrix();
-        double[][] actual = new double[][]{
-            {2.2, 1, 0.5, 2, 6},
-            {1, 1.3, 2, 1, 7},
-            {0.5, 2, 0.5, 1.6, 8.6},
-            {2, 1, 1.6, 2, 7.8},
-        };
-
-        assertEquals(expected.length, actual.length);
-        for(int i = 0; i < actual.length; i++)
-            assertArrayEquals(expected[i], actual[i]);
-    }
-
-    @Test
-    void fillFromFile2() {
-        Matrix m = new Matrix();
-        m.fillFromFile("/home/dim/workspace/tests/in43.txt");
-
-        double[][] expected = m.getMatrix();
-        double[][] actual = new double[][]{{1}, {2}, {3}, {5.8}};
-
-        assertEquals(expected.length, actual.length);
-        for(int i = 0; i < actual.length; i++)
+    void transpose() {
+        Matrix expectedMatrix = new Matrix(new double[][]{
+                {1, 2, 3},
+                {4, 5, 6},
+                {-7, -8, 9}
+        });
+        expectedMatrix = new Matrix(expectedMatrix.transpose());
+        Matrix actualMatrix = new Matrix(new double[][]{
+                {1, 4, -7},
+                {2, 5, -8},
+                {3, 6, 9}
+        });
+        double[][] expected = expectedMatrix.getMatrix();
+        double[][] actual = actualMatrix.getMatrix();
+        for(int i = 0; i < expected.length; i++)
             assertArrayEquals(expected[i], actual[i]);
     }
 }

@@ -8,7 +8,7 @@ class MatrixMathTest {
     void multipMatrix() {
         double[][] A = new double[][]{{2, 1}, {3, 4}};
         double[] vector = new double[]{7, 8};
-        double[] expected = MatrixMath.multipMatrixVector(A, vector);
+        double[] expected = MatrixMath.multip(A, vector);
         double[] actual = new double[]{22, 53};
 
         assertArrayEquals(expected, actual);
@@ -81,22 +81,12 @@ class MatrixMathTest {
         assertArrayEquals(expected, actual);
     }
 
-    @Test
-    void transposeMatrix() {
-        double[][] matrix = new double[][]{{1, 2, 3}, {4, 5, 6}, {-7, -8, 9}};
-        MatrixMath mM = new MatrixMath();
-        double[][] expected = new MatrixMath().transposeMatrix(matrix);
-        double[][] actual = new double[][]{{1, 4, -7}, {2, 5, -8}, {3, 6, 9}};
-
-        for(int i = 0; i < matrix.length; i++)
-            assertArrayEquals(expected[i], actual[i]);
-    }
 
     @Test
     void multipMatrixMatrixTest() {
         Matrix A = new Matrix(new double[][]{{2, 3}, {4, 5}, {6, 7}});
         Matrix B = new Matrix(new double[][]{{1, 2, 3}, {4, 2, 3}});
-        Matrix expected = new Matrix(MatrixMath.multipMatrixMatrix(A.getMatrix(), B.getMatrix()));
+        Matrix expected = new Matrix(MatrixMath.multip(A.getMatrix(), B.getMatrix()));
         Matrix actual = new Matrix(new double[][]{{14, 10, 15}, {24, 18, 27}, {34, 26, 39}});
         for (int i = 0; i < actual.getMatrix().length; i++)
             assertArrayEquals(expected.getMatrix()[i], actual.getMatrix()[i]);

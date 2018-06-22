@@ -1,5 +1,7 @@
 public class UklMatrix extends Matrix {
 
+    // constructors
+
     UklMatrix(int size, int k, int l, double alpha, double betta) {
         matrix = new double[size][size];
 

@@ -3,18 +3,22 @@ import java.util.concurrent.ThreadLocalRandom;
 
 public class MatrixMath {
 
+    // properties
+
     static double E = 0.001;
     static double MAX_NUM_OF_ITER = 1_000;
 
-    static double[] multipMatrixVector(double[][] A, double[] firstVector){
+    // public
+
+    public static double[] multip(double[][] A, double[] vector){
         int width = A.length;
         double[] finalMatrix = new double[width];
         for(int i = 0; i < width; i++)
-            finalMatrix[i] = multipVector(A[i], firstVector);
+            finalMatrix[i] = multipVector(A[i], vector);
         return finalMatrix;
     }
 
-    static double[][] multipMatrixMatrix(double[][] A, double[][] B) {
+    public static double[][] multip(double[][] A, double[][] B) {
         int width = B[0].length;
         int height = A.length;
         double[][] finalMatrix = new double[height][];
@@ -23,23 +27,9 @@ public class MatrixMath {
             double[] vector = new double[B.length];
             for (int j = 0; j < B.length; j++)
                 vector[j] = B[j][i];
-            finalMatrix[i] = multipMatrixVector(A, vector);
+            finalMatrix[i] = multip(A, vector);
         }
-        return transposeMatrix(finalMatrix);
-    }
-
-    private static double multipVector(double[] row, double[] vector){
-        double result = 0;
-        for(int i = 0; i < vector.length; i++)
-            result += row[i] * vector[i];
-        return result;
-    }
-
-    static boolean compareVectors(double[] vectorPrev, double[] vectorNext){
-        for (int i = 0; i < vectorNext.length; i++)
-            if (!equals(vectorPrev[i], vectorNext[i]))
-                return false;
-        return true;
+        return new Matrix(finalMatrix).transpose();
     }
 
     public static boolean equals(double num1, double num2) {
@@ -49,7 +39,16 @@ public class MatrixMath {
             return false;
     }
 
-    static double[] normalization(double[] vector) {
+    // private
+
+    private static double multipVector(double[] row, double[] vector){
+        double result = 0;
+        for(int i = 0; i < vector.length; i++)
+            result += row[i] * vector[i];
+        return result;
+    }
+
+    private static double[] normalization(double[] vector) {
         double max = Math.abs(vector[0]);
         for (double i : vector)
             if (max < Math.abs(i))
@@ -61,6 +60,17 @@ public class MatrixMath {
         return normVector;
     }
 
+
+
+
+
+    static boolean compareVectors(double[] vectorPrev, double[] vectorNext){
+        for (int i = 0; i < vectorNext.length; i++)
+            if (!equals(vectorPrev[i], vectorNext[i]))
+                return false;
+        return true;
+    }
+
     static double[] searchPersonalVector (double[][] matrix, double[] firstApproximation) {
         double[] vectorFirst = firstApproximation;
         double[] vectorSecond = new double[matrix.length];
@@ -68,7 +78,7 @@ public class MatrixMath {
         double personalNumberSec = 1;
 
         for (int i = 0; i < MAX_NUM_OF_ITER; i++) {
-            vectorSecond = multipMatrixVector(matrix, vectorFirst);
+            vectorSecond = multip(matrix, vectorFirst);
             vectorSecond = normalization(vectorSecond);
 
             if (compareVectors(vectorFirst, vectorSecond))
@@ -81,15 +91,14 @@ public class MatrixMath {
     }
 
     static double searchPersonalNumber(double[][] matrix, double[] vector){
-        double[] vectorSecond = multipMatrixVector(matrix, vector);
+        double[] vectorSecond = multip(matrix, vector);
         double personalNumber = scalarMultipVector(vector, vectorSecond) / scalarMultipVector(vector, vector);
         return personalNumber;
     }
 
-
     static double[] searchSecPersVector (double[][] matrix, double[] personalVector, double[] firstApproximation) {
 
-        double[][] transpMatrix = transposeMatrix(matrix);
+        double[][] transpMatrix = new Matrix(matrix).transpose();
         double[] persVectorOfTranspose = searchPersonalVector(transpMatrix, firstApproximation);
         double firstRatio = scalarMultipVector(firstApproximation, persVectorOfTranspose) /
                 scalarMultipVector(personalVector, persVectorOfTranspose);
@@ -97,7 +106,7 @@ public class MatrixMath {
         double[] secApproxTransp = new double[personalVector.length];
 
         for (int i = 0; i < MAX_NUM_OF_ITER; i++) {
-            secApproxTransp = multipMatrixVector(transpMatrix, firstApproxTransp);
+            secApproxTransp = multip(transpMatrix, firstApproxTransp);
             secApproxTransp = normalization(secApproxTransp);
             secApproxTransp = getProportion(secApproxTransp, persVectorOfTranspose, personalVector);
 
@@ -109,7 +118,6 @@ public class MatrixMath {
 
         return secApproxTransp;
     }
-
 
     static double[] getProportion (double[] approx, double[] personVectorTransp, double[] personVectorUsual) {
         double component = scalarMultipVector(approx, personVectorTransp) /
@@ -133,17 +141,6 @@ public class MatrixMath {
         return vector;
     }
 
-    static double[][] transposeMatrix(double[][] matrix){
-        double[][] transposed = new double[matrix.length][matrix.length];
-        double change = 0;
-        for(int i = 0; i < matrix.length; i++)
-            for(int j = i; j < matrix.length; j++){
-                transposed[i][j] = matrix[j][i];
-                transposed[j][i] = matrix[i][j];
-            }
-
-        return transposed;
-    }
 
 
     static double[] multipVectorNumber(double[] vector, double nunber) {

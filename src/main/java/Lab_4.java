@@ -9,8 +9,7 @@ public class Lab_4 {
     private double[] firstApproximation;
 
     public Lab_4(String path) {
-        Matrix matrix = new Matrix();
-        matrix.fillFromFile(path);
+        Matrix matrix = new Matrix(path);
 
         firstApproximation = MatrixMath.getRandomVector(matrix.getMatrix().length);
         personalVector = MatrixMath.searchPersonalVector(matrix.getMatrix(), firstApproximation);
