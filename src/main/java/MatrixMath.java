@@ -1,3 +1,9 @@
+import org.apache.commons.math3.linear.Array2DRowRealMatrix;
+import org.apache.commons.math3.linear.DecompositionSolver;
+import org.apache.commons.math3.linear.LUDecomposition;
+import org.apache.commons.math3.linear.RealMatrix;
+
+
 import java.util.Random;
 import java.util.concurrent.ThreadLocalRandom;
 
@@ -127,6 +133,17 @@ public class MatrixMath {
         for (int i = 0; i < length; i++)
             vector[i] = ThreadLocalRandom.current().nextDouble(1, 20);
         return vector;
+    }
+
+    public static double[][] reverseMatrix (double[][] matrix) {
+        UnitMatrix Umatrix = new UnitMatrix(matrix.length);
+        double[][] unitMatrix = Umatrix.getMatrix();
+        RealMatrix sourceMatrix = new Array2DRowRealMatrix(matrix);
+        DecompositionSolver solver = new LUDecomposition(sourceMatrix).getSolver();
+        RealMatrix I = new Array2DRowRealMatrix(unitMatrix);
+        RealMatrix result = solver.solve(I);
+
+        return result.getData();
     }
 
     public static double[] normalization(double[] vector) {
