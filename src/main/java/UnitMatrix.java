@@ -9,4 +9,9 @@ public class UnitMatrix extends Matrix {
             matrix[i][i] = 1;
     }
 
+    public UnitMatrix(double[][] matrix) {
+        super();
+        this.matrix = matrix;
+    }
+
 }

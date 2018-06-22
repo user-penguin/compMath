@@ -9,17 +9,20 @@ import static java.lang.Math.abs;
 public class Lab_5 {
 
     public static void main(String[] arg) {
+        Matrix start = new Matrix("input.txt");
         Matrix A = new Matrix("input.txt");
-        A.print("Исходная матрица A: ");
         double[] sumA = calculateSumA(A.getMatrix());
-
+        UnitMatrix e = new UnitMatrix(A.getMatrix().length);
         int[] indexes = new int[2];
+
         while (!(searchMaxElem(A.getMatrix(), indexes, sumA) < MatrixMath.E)) {
             Matrix U = new Matrix(uklMatrix(A.getMatrix(), indexes[0], indexes[1]));
 
             // A = UT * A * U
             A = new Matrix(MatrixMath.multip(U.transpose(), A.getMatrix()));
             A = new Matrix(MatrixMath.multip(A.getMatrix(), U.getMatrix()));
+
+            e = new UnitMatrix(MatrixMath.multip(e.getMatrix(), U.getMatrix()));
 
             sumA = calculateSumA(A.getMatrix());
         }
@@ -28,9 +31,27 @@ public class Lab_5 {
         for (int i = 0; i < personalNumbers.length; i++)
             personalNumbers[i] = A.getMatrix()[i][i];
 
-        System.out.println("\nСобственные числа: ");
-        for (double i : personalNumbers)
-            System.out.println(i);
+        normalization(e.getMatrix());
+
+        Matrix nevjazki = new Matrix(new double[A.getMatrix().length][A.getMatrix().length]);
+        nevjazka(start.getMatrix(), personalNumbers, e.getMatrix(), nevjazki.getMatrix());
+
+        print(personalNumbers, e, nevjazki, start);
+    }
+
+    private static void print(double[] personalNumbers, Matrix e, Matrix nevjazki, Matrix start) {
+        start.print("Исходная матрица A: ");
+        for (int i = 0; i < personalNumbers.length; i++) {
+            System.out.println("\nСобственное число №" + (i + 1) + ": " + personalNumbers[i]);
+            System.out.print("Собственный вектор:    (");
+            for (int j = 0; j < personalNumbers.length; j++)
+                System.out.print(e.getMatrix()[j][i] + " ");
+            System.out.println(")");
+            System.out.print("Невязка: ");
+            for (int j = 0; j < personalNumbers.length; j++)
+                System.out.print(nevjazki.getMatrix()[i][j] + " ");
+            System.out.println();
+        }
     }
 
     private static double calculateMu(double[][] matrix, int k, int l){
@@ -75,7 +96,6 @@ public class Lab_5 {
             if(sumA[i] > max) {
                 max = sumA[i];
                 indexes[0] = i;
-                //System.out.println(indexes[0] + " " + indexes[1] + " " + max);
             }
 
         max = 0;
@@ -83,7 +103,6 @@ public class Lab_5 {
             if((Math.abs(A[indexes[0]][i]) > Math.abs(max)) && (indexes[0] != i)) {
                 max = A[indexes[0]][i];
                 indexes[1] = i;
-                //System.out.println(indexes[0] + " " + indexes[1] + " " + max);
             }
 
         if(indexes[0] > indexes[1]){
@@ -109,5 +128,29 @@ public class Lab_5 {
             return -1;
         else
             return 1;
+    }
+
+    private static void normalization(double[][] matrix) {
+        int n = matrix.length;
+        for(int i = 0; i < n; i++) {
+            double norm = 0;
+            int k = n - 1;
+            while(matrix[k][i] == 0)
+                k--;
+
+            for(int j = 0; j < n; j++)
+                matrix[j][i] /= matrix[k][i];
+        }
+    }
+
+    public static void nevjazka(double A[][], double lambda[], double e[][], double nevjazki[][]) {
+        int n = A.length;
+        for(int i = 0; i < n; i++)
+            for(int j = 0; j < n; j++) {
+                double sum = 0;
+                for(int z = 0; z < n; z++)
+                    sum += A[j][z] * e[z][i];
+                nevjazki[i][j] = lambda[i] * e[j][i] - sum;
+            }
     }
 }
