@@ -2,11 +2,22 @@ import java.io.BufferedReader;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.Scanner;
 
 public class InterpolMethods {
 
     private static double[] interpolateNodes;
     private static double[] interpolateValues;
+    private static double targetX;
+
+    public static void setTargetX() {
+        System.out.println("Введите значение аргумента, в котором нужно вычислить приближённое значение: ");
+
+        Scanner in = new Scanner(System.in);
+        double target = in.nextDouble();
+
+        targetX = target;
+    }
 
     public static void fillFromFile(String path) {
         try {
@@ -37,20 +48,20 @@ public class InterpolMethods {
 
         return finalArray;
     }
-//todo
-//    public static void getLagrangePolyn(double sourceX){
-//        double sum = 0;
-//        for(int k = 0; k < .length; k++) {
-//            double pr1 = 1;
-//            double pr2 = 1;
-//            for(int j = 0; j < x.length; j++) {
-//                if(j != k) {
-//                    pr1 *= (xx - x[j]);
-//                    pr2 *= (x[k] - x[j]);
-//                }
-//            }
-//            sum += (pr1 * y[k]) / pr2;
-//        }
-//        return sum;
-//    }
+
+    public static double getLagrangePolyn(double sourceX){
+        double sum = 0;
+        for(int k = 0; k < interpolateNodes.length; k++) {
+            double multipUp = 1;
+            double multipDown = 1;
+            for(int j = 0; j < interpolateNodes.length; j++) {
+                if(j != k) {
+                    multipUp *= (targetX - interpolateNodes[j]);
+                    multipDown *= (interpolateNodes[k] - interpolateNodes[j]);
+                }
+            }
+            sum += (multipUp * interpolateValues[k]) / multipDown;
+        }
+        return sum;
+    }
 }
