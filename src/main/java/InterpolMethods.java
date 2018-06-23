@@ -6,11 +6,19 @@ import java.util.Scanner;
 
 public class InterpolMethods {
 
-    private static double[] interpolateNodes;
-    private static double[] interpolateValues;
-    private static double targetX;
+    private double[] interpolateNodes;
+    private double[] interpolateValues;
+    private double targetX;
 
-    public static void setTargetX() {
+    public double[] getNodes() {
+        return interpolateNodes;
+    }
+
+    public double[] getInterpolateValues() {
+        return interpolateValues;
+    }
+
+    public void setTargetX() {
         System.out.println("Введите значение аргумента, в котором нужно вычислить приближённое значение: ");
 
         Scanner in = new Scanner(System.in);
@@ -19,7 +27,7 @@ public class InterpolMethods {
         targetX = target;
     }
 
-    public static void fillFromFile(String path) {
+    public void fillFromFile(String path) {
         try {
             FileInputStream fstream = new FileInputStream(path);
             BufferedReader br = new BufferedReader(new InputStreamReader(fstream));
@@ -36,7 +44,7 @@ public class InterpolMethods {
         }
     }
 
-    private static double[] splitToDoubleArray(String source) {
+    private double[] splitToDoubleArray(String source) {
         double[] finalArray;
         String[] splittingNumbers;
 
@@ -49,7 +57,7 @@ public class InterpolMethods {
         return finalArray;
     }
 
-    public static double getLagrangePolyn(double sourceX){
+    public double getLagrangePolyn(double sourceX){
         double sum = 0;
         for(int k = 0; k < interpolateNodes.length; k++) {
             double multipUp = 1;
