@@ -44,7 +44,7 @@ public class Lab_8 extends Lab {
     public void print() {
         String str = "";
 
-        str += "Отрезок [" + a + "; " + b + "]";
+        //str += "Отрезок [" + a + "; " + b + "]";
 
         System.out.println(str);
     }
