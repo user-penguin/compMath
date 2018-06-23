@@ -1,9 +1,16 @@
-public interface Lab {
+public abstract class Lab {
 
-    void print();
+    public Lab() {}
 
-    void run();
+    public Lab(String path) {
+        fillFromFile(path);
+        run();
+        print();
+    }
 
-    void fillFromFile(String path);
+    public abstract void fillFromFile(String path);
 
+    public abstract void run();
+
+    public abstract void print();
 }
