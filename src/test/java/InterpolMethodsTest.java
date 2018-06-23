@@ -25,5 +25,12 @@ class InterpolMethodsTest {
 
     @Test
     void getLagrangePolyn() {
+        String path = "D:\\Projects\\forTests\\testFillNodes.txt";
+        InterpolMethods IM = new InterpolMethods();
+        IM.fillFromFile(path);
+
+        double expected = IM.getLagrangePolyn(2.5);
+        double actual = 25;
+        assertEquals(expected, actual);
     }
 }

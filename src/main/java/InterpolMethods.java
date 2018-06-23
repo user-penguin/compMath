@@ -57,7 +57,7 @@ public class InterpolMethods {
         return finalArray;
     }
 
-    public double getLagrangePolyn(double sourceX){
+    public double getLagrangePolyn(double targetX){
         double sum = 0;
         for(int k = 0; k < interpolateNodes.length; k++) {
             double multipUp = 1;
