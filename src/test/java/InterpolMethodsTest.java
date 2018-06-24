@@ -4,13 +4,10 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class InterpolMethodsTest {
 
-    @Test
-    void setTargetX() {
-    }
 
     @Test
     void fillFromFile() {
-        String path = "D:\\Projects\\forTests\\testFillNodes.txt";
+        String path = "src\\test\\source\\testFillNodes.txt";
         InterpolMethods IM = new InterpolMethods();
         IM.fillFromFile(path);
         double[] expected1 = IM.getNodes();
