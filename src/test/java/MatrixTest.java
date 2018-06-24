@@ -38,4 +38,14 @@ class MatrixTest {
         for(int i = 0; i < expected.length; i++)
             assertArrayEquals(expected[i], actual[i]);
     }
+
+    @Test
+    void get() {
+        double[][] matrix = new double[][]{{1, 2}, {3, 4}};
+        double[][] expected = new Matrix(matrix).getMatrix();
+
+        for(int i = 0; i < matrix.length; i++)
+            assertArrayEquals(matrix, expected);
+    }
+
 }

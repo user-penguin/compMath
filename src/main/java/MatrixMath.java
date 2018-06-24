@@ -48,6 +48,7 @@ public class MatrixMath {
                 vector[j] = B[j][i];
             finalMatrix[i] = multip(A, vector);
         }
+
         return new Matrix(finalMatrix).transpose();
     }
 
@@ -128,5 +129,12 @@ public class MatrixMath {
         RealMatrix result = solver.solve(I);
 
         return result.getData();
+    }
+
+    public static double[] calcInaccuracy(double[] a, double[] b) {
+        double[] inaccuracy = new double[a.length];
+        for (int i = 0; i < a.length; i++)
+            inaccuracy[i] = Math.abs(a[i] - b[i]);
+        return inaccuracy;
     }
 }
