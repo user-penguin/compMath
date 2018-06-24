@@ -22,7 +22,7 @@ class InterpolMethodsTest {
 
     @Test
     void getLagrangePolyn() {
-        String path = "D:\\Projects\\forTests\\testFillNodes.txt";
+        String path = "src\\test\\source\\testFillNodes.txt";
         InterpolMethods IM = new InterpolMethods();
         IM.fillFromFile(path);
 
