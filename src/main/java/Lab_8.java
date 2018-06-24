@@ -2,6 +2,7 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.Random;
 
 import static java.lang.Math.*;
 
@@ -16,7 +17,7 @@ public class Lab_8 extends Lab {
 
     private int numberFunction;
     private double step;
-    private boolean isPerturbation;
+    private double level = 0.05;
     private double[] x;
     private double[] y;
 
@@ -43,7 +44,7 @@ public class Lab_8 extends Lab {
 
             step = Double.parseDouble(br.readLine());
 
-            isPerturbation = Boolean.parseBoolean(br.readLine());
+            level = Double.parseDouble(br.readLine());
 
             int countStep = (int)((b - a) * (1 / step)) + 1;
             x = new double[countStep];
@@ -60,6 +61,7 @@ public class Lab_8 extends Lab {
 
     @Override
     public void run() {
+        vozm();
         firstDerivative = calcFirstDerivative();
         realFirstDerivative = calcRealFirstDerivative();
         inaccuracyFirstDerivative = MatrixMath.calcInaccuracy(firstDerivative, realFirstDerivative);
@@ -241,6 +243,15 @@ public class Lab_8 extends Lab {
         //derivative[x.length - 2] = (4 * y[x.length - 2] - 13 * y[x.length - 3] + 15 * y[x.length - 4] - 7 * y[x.length - 5] + y[x.length - 6]) / (8 * step * step * step);
         //derivative[x.length - 1] = (4 * y[x.length - 1] - 13 * y[x.length - 2] + 15 * y[x.length - 3] - 7 * y[x.length - 4] + y[x.length - 5]) / (8 * step * step * step);
         return derivative;
+    }
+
+    public void vozm() {
+        Random rnd = new Random(System.currentTimeMillis());
+        double vozm = 0;
+        for(int i = 0; i < y.length; i++) {
+            while((vozm = rnd.nextDouble()) > level) {}
+            y[i] += vozm;
+        }
     }
 
 }
