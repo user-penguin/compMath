@@ -9,7 +9,7 @@ public class Lab_8 extends Lab {
 
     public static void main(String[] arg) {
         Lab_8 lab_8 = new Lab_8();
-        lab_8.fillFromFile("file_lab_8.txt");
+        lab_8.fillFromFile("src\\test\\source\\file_lab_8.txt");
         lab_8.run();
         lab_8.print();
     }
