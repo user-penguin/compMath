@@ -1,3 +1,5 @@
+import jdk.internal.org.objectweb.asm.tree.analysis.Interpreter;
+
 import java.io.BufferedReader;
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -69,6 +71,39 @@ public class InterpolMethods {
                 }
             }
             sum += (multipUp * interpolateValues[k]) / multipDown;
+        }
+
+        return sum;
+    }
+//
+//    public double calcValueAvailFunction(int number) {
+//        switch (number) {
+//            case 1:
+//                return targetX * targetX;
+//        }
+//    }
+
+
+    public double getDividedDiff(int n) {
+        double sum = 0;
+        for (int i = 0; i < n; i++) {
+            double multip = 1;
+            for (int l = 0; l < n; l++) {
+                if (i != l) {
+                    multip *= interpolateNodes[i] - interpolateNodes[l];
+                }
+            }
+            sum += interpolateValues[i] / multip;
+        }
+        return sum;
+    }
+
+    public double getNewtonPolyn(double targetX) {
+        double multip = 1;
+        double sum = 0;
+        for (int i = 0; i < interpolateNodes.length; i++) {
+            sum += getDividedDiff(i + 1) * multip;
+            multip *= (targetX - interpolateNodes[i]);
         }
         return sum;
     }
