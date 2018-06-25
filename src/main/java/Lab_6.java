@@ -7,9 +7,7 @@ import java.util.Scanner;
 
 public class Lab_6 {
 
-    public static void main(String[] arg) {
-        Lab_6 lab_6 = new Lab_6("src\\test\\source\\Lab6_in.txt");
-    }
+
 
     // constructors
 

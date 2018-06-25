@@ -51,6 +51,7 @@ public class Lab_4 {
                 searchCloserNumber(nearNumber, matrix.getMatrix()));
     }
 
+
     // public
 
     public static double[] calculateProportion(double[] approx, double[] personVectorTransp, double[] personVectorUsual) {
