@@ -5,6 +5,9 @@ import java.util.Scanner;
  */
 
 public class Lab_4 {
+    public static void main(String[] arg) {
+        Lab_4 lab_4 = new Lab_4("src\\test\\source\\in41.txt");
+    }
 
     // properties
 
