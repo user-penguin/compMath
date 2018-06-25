@@ -6,7 +6,7 @@ class MatrixTest {
 
     @Test
     void fillFromFile() {
-        Matrix expectedMatrix = new Matrix("src\\test\\source\\in41.txt");
+        Matrix expectedMatrix = new Matrix("src\\test\\source\\file_lab_4.txt");
         Matrix actualMatrix = new Matrix(new double[][]{
             {2.2, 1, 0.5, 2},
             {1, 1.3, 2, 1},

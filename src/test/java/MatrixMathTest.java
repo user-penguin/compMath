@@ -110,7 +110,7 @@ class MatrixMathTest {
                 {2, -7, 10},
                 {-8, 10, -4}};
         double[] firstApproximate = MatrixMath.getRandomVector(matrix.length);
-        double expected = Lab_4.searchPersonalNumber(matrix, Lab_4.searchPersonalVector(matrix, firstApproximate));
+        double expected = Lab_4.searchFirstPersonalNumber(matrix, Lab_4.searchPersonalVector(matrix, firstApproximate));
         double actual = -18;
         assertEquals(MatrixMath.equals(expected, actual), true);
     }

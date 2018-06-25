@@ -27,7 +27,7 @@ public class Matrix {
         return matrix;
     }
 
-    public void print(double[] vector){
+    public static void print(double[] vector){
         for (double i : vector)
             System.out.print(i + " ");
         System.out.println();
