@@ -28,6 +28,7 @@ public class Lab_5 extends Lab {
         lab_5.fillFromFile("src\\test\\source\\file_lab_5.txt");
         lab_5.run();
         lab_5.print();
+
     }
 
     private void addOneRow(String readRow, ArrayList<double[]> matrix) {
