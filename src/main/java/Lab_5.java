@@ -9,7 +9,7 @@ import static java.lang.Math.abs;
 public class Lab_5 {
 
     public static void main(String[] arg) {
-        Lab_5 lab_5 = new Lab_5("input.txt");
+        Lab_5 lab_5 = new Lab_5("src\\test\\source\\file_lab_5.txt");
     }
 
     // constructors
