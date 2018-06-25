@@ -10,6 +10,32 @@ public class InterpolMethods {
     private double[] interpolateValues;
     private double targetX;
 
+    private String typeOfFunct;
+    private double interpolateStep;
+    private double localStep;
+    private double leftBorder;
+    private double rightBorder;
+
+    public void setTypeOfFunct(String function) {
+        typeOfFunct = function;
+    }
+
+    public void setInterpolateStep(double step) {
+        interpolateStep = step;
+    }
+
+    public void setLocalStep(double step) {
+        localStep = step;
+    }
+
+    public void setLeftBorder(double border) {
+        leftBorder = border;
+    }
+
+    public void setRightBorder(double border) {
+        rightBorder = border;
+    }
+
     public double[] getInterpolateNodes() {
         return interpolateNodes;
     }
@@ -41,6 +67,23 @@ public class InterpolMethods {
         targetX = target;
     }
 
+    public void fillSplineData(String path) {
+        try {
+            FileInputStream fstream = new FileInputStream(path);
+            BufferedReader br = new BufferedReader(new InputStreamReader(fstream));
+
+            setTypeOfFunct(br.readLine());
+            setInterpolateStep(Double.parseDouble(br.readLine()));
+            setLocalStep(Double.parseDouble(br.readLine()));
+            setLeftBorder(Double.parseDouble(br.readLine()));
+            setRightBorder(Double.parseDouble(br.readLine()));
+
+        }
+        catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
     public void fillFromFile(String path) {
         try {
             FileInputStream fstream = new FileInputStream(path);
@@ -52,6 +95,20 @@ public class InterpolMethods {
         }
         catch (IOException e) {
             e.printStackTrace();
+        }
+    }
+
+    public void calcSplineArguments()   {
+        int size = (int) ((rightBorder - leftBorder) / interpolateStep) + 1;
+        interpolateNodes = new double[size];
+        interpolateValues = new double[size];
+
+        int i = 0;
+        double state = leftBorder;
+        while (state - MatrixMath.E <= rightBorder) {
+            interpolateNodes[i] = state;
+            state += interpolateStep;
+            i++;
         }
     }
 
@@ -164,4 +221,5 @@ public class InterpolMethods {
         }
         return sum;
     }
+
 }

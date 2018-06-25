@@ -9,7 +9,7 @@ public class MatrixMath {
 
     // properties
 
-    static double E = 0.001;
+    static double E = 0.0001;
 
     static double MAX_NUM_OF_ITER = 1_000;
 
