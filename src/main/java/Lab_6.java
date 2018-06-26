@@ -1,13 +1,10 @@
 import java.util.Scanner;
 
-
 /**
  * ИНТЕРПОЛИРОВАНИЕ
  */
 
 public class Lab_6 {
-
-
 
     // constructors
 

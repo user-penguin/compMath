@@ -80,7 +80,7 @@ public class Lab_4 extends Lab {
         return vectorSecond;
     }
 
-    public static double searchFirstPersonalNumber(double[][] matrix, double[] personalVector){
+    public static double searchFirstPersonalNumber(double[][] matrix, double[] personalVector) {
         double[] secondPersonalVector = MatrixMath.multip(matrix, personalVector);
         double personalNumber = MatrixMath.scalarMultip(personalVector, secondPersonalVector) /
                 MatrixMath.scalarMultip(personalVector, personalVector);
@@ -118,7 +118,7 @@ public class Lab_4 extends Lab {
         return MatrixMath.substract(approx, MatrixMath.multip(personVectorUsual, component));
     }
 
-    public static double searchCloserNumber (double sourceNum, double[][] matrix) {
+    public static double searchCloserNumber(double sourceNum, double[][] matrix) {
         double[][] matrixB = findMatrixB(matrix, sourceNum);
         double[] firstVector = searchPersonalVector(matrixB, MatrixMath.getRandomVector(matrix.length));
         double[] secondVector = MatrixMath.multip(matrixB, firstVector);
@@ -126,7 +126,7 @@ public class Lab_4 extends Lab {
         return sourceNum + (MatrixMath.scalarMultip(firstVector, firstVector) / MatrixMath.scalarMultip(secondVector, firstVector));
     }
 
-    public static double[][] findMatrixB (double[][] matrix, double personalNumber) {
+    public static double[][] findMatrixB(double[][] matrix, double personalNumber) {
         double[][] matrixA = matrix;
         double[][] unitMatrix = new UnitMatrix(matrix.length).getMatrix();
 
