@@ -10,6 +10,7 @@ public class Lab_6 {
 
     public Lab_6(String path) {
         Scanner in = new Scanner(System.in);
+
         InterpolMethods IM = new InterpolMethods();
         IM.fillFromFile(path);
 
