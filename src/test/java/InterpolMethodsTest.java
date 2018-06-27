@@ -10,7 +10,7 @@ class InterpolMethodsTest {
         String path = "src\\test\\source\\testFillNodes.txt";
         InterpolMethods IM = new InterpolMethods();
         IM.fillFromFile(path);
-        double[] expected1 = IM.getInterpolateNodes();
+        double[] expected1 = IM.getiNodes();
         double[] actual1 = new double[]{1, 2, 3, 4};
 
         assertArrayEquals(expected1, actual1);
@@ -21,7 +21,8 @@ class InterpolMethodsTest {
         String path = "src\\test\\source\\testFillNodes.txt";
         InterpolMethods IM = new InterpolMethods();
         IM.fillFromFile(path);
-        IM.setInterpolateValues("10*x");
+        IM.setTypeOfFunct("10*x");
+        IM.setiValues();
 
         double expected = IM.getLagrangePolyn(2.5);
         double actual = 25;
@@ -30,11 +31,11 @@ class InterpolMethodsTest {
 
     @Test
     void calcValueAvailFunction() {
-        String funk = "x^2";
+        String funk = "sin(x)";
         InterpolMethods IM = new InterpolMethods();
-        IM.setTargetX(6);
+        IM.setTargetX(0);
         double expected = IM.calcValueAvailFunction(funk, IM.getTargetX());
-        double actual = 36;
+        double actual = 0;
         assertEquals(expected, actual);
     }
 }

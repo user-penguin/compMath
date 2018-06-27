@@ -117,23 +117,6 @@ public class Lab_5 extends Lab {
         }
     }
 
-    // private
-
-    private static void print(double[] personalNumbers, Matrix e, Matrix nevjazki, Matrix start) {
-        start.print("Исходная матрица A: ");
-        for (int i = 0; i < personalNumbers.length; i++) {
-            System.out.println("\nСобственное число №" + (i + 1) + ": " + personalNumbers[i]);
-            System.out.print("Собственный вектор:    (");
-            for (int j = 0; j < personalNumbers.length; j++)
-                System.out.print(e.getMatrix()[j][i] + " ");
-            System.out.println(")");
-            System.out.print("Невязка: ");
-            for (int j = 0; j < personalNumbers.length; j++)
-                System.out.print(nevjazki.getMatrix()[i][j] + " ");
-            System.out.println();
-        }
-    }
-
     private static double calculateMu(double[][] matrix, int k, int l){
         return (2 * matrix[k][l]) / (matrix[k][k] - matrix[l][l]);
     }

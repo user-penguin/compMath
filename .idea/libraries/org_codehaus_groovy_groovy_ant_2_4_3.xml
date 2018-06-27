@@ -1,0 +1,16 @@
+<component name="libraryTable">
+  <library name="org.codehaus.groovy:groovy-ant:2.4.3" type="repository">
+    <properties maven-id="org.codehaus.groovy:groovy-ant:2.4.3" />
+    <CLASSES>
+      <root url="jar://$MAVEN_REPOSITORY$/org/codehaus/groovy/groovy-ant/2.4.3/groovy-ant-2.4.3.jar!/" />
+      <root url="jar://$MAVEN_REPOSITORY$/org/codehaus/groovy/groovy-groovydoc/2.4.3/groovy-groovydoc-2.4.3.jar!/" />
+      <root url="jar://$MAVEN_REPOSITORY$/org/codehaus/groovy/groovy-templates/2.4.3/groovy-templates-2.4.3.jar!/" />
+      <root url="jar://$MAVEN_REPOSITORY$/org/codehaus/groovy/groovy-xml/2.4.3/groovy-xml-2.4.3.jar!/" />
+      <root url="jar://$MAVEN_REPOSITORY$/org/apache/ant/ant/1.9.4/ant-1.9.4.jar!/" />
+      <root url="jar://$MAVEN_REPOSITORY$/org/codehaus/groovy/groovy/2.4.3/groovy-2.4.3.jar!/" />
+      <root url="jar://$MAVEN_REPOSITORY$/org/apache/ant/ant-launcher/1.9.4/ant-launcher-1.9.4.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
