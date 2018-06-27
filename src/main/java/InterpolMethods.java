@@ -6,8 +6,8 @@ import java.util.Scanner;
 
 public class InterpolMethods {
 
-    private double[] interpolateNodes;
-    private double[] interpolateValues;
+    private double[] iNodes;
+    private double[] iValues;
     private double targetX;
 
     private String typeOfFunct;
@@ -16,44 +16,41 @@ public class InterpolMethods {
     private double leftBorder;
     private double rightBorder;
 
+    InterpolMethods() {
+
+    }
+
+    InterpolMethods(String funct) {
+        typeOfFunct = funct;
+    }
+
+    InterpolMethods(double[] tableX, double[] tableY) {
+        iNodes = new double[tableX.length];
+        iValues = new double[tableY.length];
+
+        for (int i = 0; i < tableX.length; i++) {
+            iNodes[i] = tableX[i];
+            iValues[i] = tableY[i];
+        }
+    }
+
     public void setTypeOfFunct(String function) {
         typeOfFunct = function;
     }
 
-    public void setInterpolateStep(double step) {
-        interpolateStep = step;
+    public double[] getiNodes() {
+        return iNodes;
     }
 
-    public void setLocalStep(double step) {
-        localStep = step;
-    }
-
-    public void setLeftBorder(double border) {
-        leftBorder = border;
-    }
-
-    public void setRightBorder(double border) {
-        rightBorder = border;
-    }
-
-    public double[] getInterpolateNodes() {
-        return interpolateNodes;
-    }
-
-    public double[] getInterpolateValues() {
-        return interpolateValues;
+    public double[] getiValues() {
+        return iValues;
     }
 
     public double getTargetX() {
         return targetX;
     }
 
-    public void setInterpolateValues(String function) {
-        interpolateValues = new double[interpolateNodes.length];
-        for (int i = 0; i < interpolateNodes.length; i++)
-            interpolateValues[i] = calcValueAvailFunction(function, interpolateNodes[i]);
-    }
-
+    // todo переделать в инпут
     public void setTargetX(double value) {
         targetX = value;
     }
@@ -67,21 +64,11 @@ public class InterpolMethods {
         targetX = target;
     }
 
-    public void fillSplineData(String path) {
-        try {
-            FileInputStream fstream = new FileInputStream(path);
-            BufferedReader br = new BufferedReader(new InputStreamReader(fstream));
-
-            setTypeOfFunct(br.readLine());
-            setInterpolateStep(Double.parseDouble(br.readLine()));
-            setLocalStep(Double.parseDouble(br.readLine()));
-            setLeftBorder(Double.parseDouble(br.readLine()));
-            setRightBorder(Double.parseDouble(br.readLine()));
-
-        }
-        catch (IOException e) {
-            e.printStackTrace();
-        }
+    //todo пофиксить сет
+    public void setiValues() {
+        iValues = new double[iNodes.length];
+        for (int i = 0; i < iNodes.length; i++)
+            iValues[i] = calcValueAvailFunction(typeOfFunct, iNodes[i]);
     }
 
     public void fillFromFile(String path) {
@@ -91,30 +78,16 @@ public class InterpolMethods {
             String read;
 
             read  = br.readLine();
-            interpolateNodes = splitToDoubleArray(read);
+            iNodes = splitToDoubleArray(read);
         }
         catch (IOException e) {
             e.printStackTrace();
         }
     }
 
-    public void calcSplineArguments()   {
-        int size = (int) ((rightBorder - leftBorder) / interpolateStep) + 1;
-        interpolateNodes = new double[size];
-        interpolateValues = new double[size];
-
-        int i = 0;
-        double state = leftBorder;
-        while (state - MatrixMath.E <= rightBorder) {
-            interpolateNodes[i] = state;
-            state += interpolateStep;
-            i++;
-        }
-    }
-
     public double[] getGraphicArg(int size) {
-        double minArgument = interpolateNodes[0];
-        double maxArgument = interpolateNodes[interpolateNodes.length - 1];
+        double minArgument = iNodes[0];
+        double maxArgument = iNodes[iNodes.length - 1];
         double step = Math.abs(maxArgument - minArgument) / size;
         double x = minArgument;
         double[] steps = new double[size];
@@ -187,26 +160,26 @@ public class InterpolMethods {
             double multip = 1;
             for (int l = 0; l < n; l++) {
                 if (i != l) {
-                    multip *= interpolateNodes[i] - interpolateNodes[l];
+                    multip *= iNodes[i] - iNodes[l];
                 }
             }
-            sum += interpolateValues[i] / multip;
+            sum += iValues[i] / multip;
         }
         return sum;
     }
 
     public double getLagrangePolyn(double targetX){
         double sum = 0;
-        for(int k = 0; k < interpolateNodes.length; k++) {
+        for(int k = 0; k < iNodes.length; k++) {
             double multipUp = 1;
             double multipDown = 1;
-            for(int j = 0; j < interpolateNodes.length; j++) {
+            for(int j = 0; j < iNodes.length; j++) {
                 if(j != k) {
-                    multipUp *= (targetX - interpolateNodes[j]);
-                    multipDown *= (interpolateNodes[k] - interpolateNodes[j]);
+                    multipUp *= (targetX - iNodes[j]);
+                    multipDown *= (iNodes[k] - iNodes[j]);
                 }
             }
-            sum += (multipUp * interpolateValues[k]) / multipDown;
+            sum += (multipUp * iValues[k]) / multipDown;
         }
 
         return sum;
@@ -215,9 +188,9 @@ public class InterpolMethods {
     public double getNewtonPolyn(double targetX) {
         double multip = 1;
         double sum = 0;
-        for (int i = 0; i < interpolateNodes.length; i++) {
+        for (int i = 0; i < iNodes.length; i++) {
             sum += getDividedDiff(i + 1) * multip;
-            multip *= (targetX - interpolateNodes[i]);
+            multip *= (targetX - iNodes[i]);
         }
         return sum;
     }
