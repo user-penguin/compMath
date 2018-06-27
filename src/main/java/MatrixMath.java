@@ -7,13 +7,9 @@ import java.util.concurrent.ThreadLocalRandom;
 
 public class MatrixMath {
 
-    // properties
-
     static double E = 0.0001;
 
     static double MAX_NUM_OF_ITER = 1_000;
-
-    // public
 
     public static double multip(double[] row, double[] vector){
         double result = 0;

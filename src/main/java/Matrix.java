@@ -3,15 +3,9 @@ import java.util.ArrayList;
 
 public class Matrix {
 
-    // properties
-
     protected double[][] matrix;
 
-    // constructors
-
-    public Matrix() {
-
-    }
+    public Matrix() {}
 
     public Matrix(String path) {
         fillFromFile(path);
@@ -21,13 +15,11 @@ public class Matrix {
         this.matrix = matrix;
     }
 
-    // public
-
     public double[][] getMatrix() {
         return matrix;
     }
 
-    public void print(double[] vector){
+    public static void print(double[] vector){
         for (double i : vector)
             System.out.print(i + " ");
         System.out.println();
@@ -53,8 +45,6 @@ public class Matrix {
             }
         return transposed;
     }
-
-    // private
 
     private void addOneRow(String readRow, ArrayList<double[]> matrix) {
         String[] toSplit = readRow.split(" ");
