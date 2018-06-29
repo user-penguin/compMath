@@ -10,14 +10,14 @@ public class Lab_6 {
 
     public Lab_6(String path) {
         Scanner in = new Scanner(System.in);
-
-        InterpolMethods IM = new InterpolMethods();
-        IM.fillFromFile(path);
-
         String function;
         System.out.println("Введите название функции, с которой будем работать: ");
         function = in.next();
-        IM.setInterpolateValues(function);
+
+        InterpolMethods IM = new InterpolMethods(function);
+        IM.fillFromFile(path);
+
+
 
         IM.setTargetX();
 

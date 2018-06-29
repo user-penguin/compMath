@@ -8,7 +8,7 @@ public class Lab_7 extends Lab{
 
     private SplineMethods SM;
     private double[][] tridiagonalMatrix;
-    private double E = 0.0001;
+    private double E = 0.001;
 
 
     public double[] freeB;
@@ -33,14 +33,15 @@ public class Lab_7 extends Lab{
         SM.calcSplineValues();
 
         tridiagonalMatrix = SM.getTridiagonalMatrix();
-        SM.tridiagonalMethod();
+        double[] indexesC = SM.tridiagonalMethod(tridiagonalMatrix);
+        SM.setIndexesC(indexesC);
         SM.setIndexD();
         SM.setIndexB();
 
         // рисованиие
-        double tableStep = SM.getInterpolateStep();
-        double iterateStep = SM.getLocalStep();
-        int size = (SM.getiNodes().length - 1) * (int) (tableStep / iterateStep);
+        double tableStep = SM.getTableStep();
+        double buildStep = SM.getBuildStep();
+        int size = (SM.getiNodes().length - 1) * (int) (tableStep / buildStep);
         InterpolMethods IM = new InterpolMethods(SM.getiNodes(), SM.getiValues());
         IM.setTypeOfFunct(SM.getTypeOfFunct());
 
@@ -49,14 +50,14 @@ public class Lab_7 extends Lab{
         ArrayList<Double> graphNewtonValuesList = new ArrayList<>();
         ArrayList<Double> graphRealValuesList = new ArrayList<>();
 
-        for (int i = 0; i < SM.getiNodes().length - 1; i++) {
-            for (double j = SM.getiNodes()[i]; j + E < SM.getiNodes()[i+1]; j += iterateStep) {
-                System.out.println(j);
-                graphArgumentsList.add(j);
-                graphSplineValuesList.add(SM.getSpline(j, i));
-                graphNewtonValuesList.add(IM.getNewtonPolyn(j));
-                graphRealValuesList.add(IM.calcValueAvailFunction(SM.getTypeOfFunct(), j));
-            }
+        for (int i = 1; i < SM.getiNodes().length - 1; i++) {
+                for (double j = SM.getiNodes()[i]; j + E < SM.getiNodes()[i+1]; j += buildStep) {
+                    System.out.println(j);
+                    graphArgumentsList.add(j);
+                    graphSplineValuesList.add(SM.getSpline(j, i));
+                    graphNewtonValuesList.add(IM.getNewtonPolyn(j));
+                    graphRealValuesList.add(IM.calcValueAvailFunction(SM.getTypeOfFunct(), j));
+                }
         }
 
         double[] graphArgumentsArr = SM.transformListToArray(graphArgumentsList);

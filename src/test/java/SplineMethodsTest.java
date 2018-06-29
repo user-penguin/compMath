@@ -10,7 +10,7 @@ class SplineMethodsTest {
     void getTypeOfFunct() {
         SplineMethods SM = new SplineMethods("sin(x)");
         String expected = SM.getTypeOfFunct();
-        String actual = "sin(x)";
+        String actual = "sin97(x)";
         assertEquals(expected.equals(actual), true);
     }
 
@@ -23,5 +23,22 @@ class SplineMethodsTest {
         double[] actual = new double[]{2, 3};
 
         assertArrayEquals(expected, actual);
+    }
+
+    @Test
+    void tridiagonalMethod() {
+        double[][] sourceMatrix = new double[][]{
+                {1, 2, 0, 0},
+                {2, 3, 4, 0},
+                {0, 5, 6, 7},
+                {0, 0, 1, 3}
+        };
+        double[] freeIndexes = new double[]{1, 1, 2, 2};
+        SplineMethods  SM = new SplineMethods();
+        SM.setFreeB(freeIndexes);
+        double[] expected = SM.tridiagonalMethod(sourceMatrix);
+        double[] actual = new double[]{3, 13,  31, 8};
+        assertArrayEquals(expected, actual, "666");
+
     }
 }
